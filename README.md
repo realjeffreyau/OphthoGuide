@@ -98,11 +98,36 @@ python3 -m venv .venv
 .venv/bin/python scripts/assistant.py "Can LASIK fix presbyopia?" --adapter adapters/selected
 ```
 
-**What the demo shows**
-- A version selector (A–D raw output, and B\*/D\* with the full safeguards).
-- The cited sources.
-- Every passage the model actually received, with a check that they match the prompt.
-- Optionally, the exact prompt.
+**The chat (`app.py` + `scripts/chat.py`)**
+
+What it remembers:
+- A multi-turn conversation in Streamlit chat. Type a symptom or a question, then answer the assistant's follow-up questions in a few words ("Two days", "No pain", "Actually, my left eye").
+- **"What you've told me"** in the sidebar lists only facts *you* stated: eye, timing, symptoms, symptoms you've ruled out, history and corrections. Possibilities the assistant mentions never become your facts.
+- **New chat** clears the conversation and these facts. Nothing is saved to disk.
+
+How each answer is built:
+- Retrieval uses your message plus your earlier reported symptoms. A new topic gets a fresh search.
+- Urgency is re-checked on every turn.
+- Answers cite small numbered sources, with the passages, removed claims and search query in an expander below each reply.
+- Every reply is labelled with the version and adapter that produced it.
+
+Answer style (sidebar toggle):
+- **Explain (default)** is a learning tool, not a source checker. It answers confidently, suggests likely possibilities from common to rare, and refers you to a doctor only when it would change what you should do.
+  - **Numbered sentences** are backed by NEI passages.
+  - **Unnumbered sentences** are the AI's general explanation, marked as possibly wrong.
+  - **Removed:** sentences that contradict a source.
+- **Strict: sources only** keeps the earlier behaviour, where only NEI-supported statements survive.
+- The urgent-symptom notice works the same in both styles.
+
+Sources:
+- The chat searches an expanded **72-page** NEI corpus (`data/processed_chat/`). It adds eye twitching, eye strain with close work, contact lenses, retinoblastoma, retinopathy of prematurity, Graves' eye disease, corneal and retinal-detachment treatments, and more.
+- The frozen single-turn evaluation still uses the original 50 pages.
+
+Versions and safeguards:
+- **B\* (default)** and D\* keep the claim verifier and urgent notice; A–D are raw output for comparison.
+- Chat adds one stricter check: a negated or "less likely" claim is removed unless the cited passage says it.
+
+Multi-turn results are in [`data/evaluation_chat/RESULTS.md`](data/evaluation_chat/RESULTS.md). B\* stays the default, D\* is worse in chat, and there were urgent misses on the held-out conversations. They're separate from, and not comparable with, the single-turn results below.
 
 For the complete evaluated Mac dependency inventory, install
 `requirements-lock.txt` instead of `requirements.txt`. The demo binds to

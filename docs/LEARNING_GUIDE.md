@@ -606,6 +606,52 @@ medical answers are reliable.
 
 ---
 
+## 7d. Step 11 — Turning it into a conversation (`scripts/chat.py`)
+
+**The problem with single-turn:** a person says "my eye is blurry"; the assistant asks "how long?"; they reply "Two days". Searched alone, "Two days" means nothing.
+
+**How the chat layer works:**
+- **Patient facts come only from the user's messages.**
+  - Rules extract the eye, timing, onset, symptoms, symptoms the user denies ("no pain"), history and age.
+  - The latest value wins, and the earlier one is kept for the record ("left eye (corrected from right eye)").
+  - The assistant's text is never parsed, so "this could be glaucoma" can never turn into "has glaucoma".
+- **Follow-ups:** a short reply is searched together with the earlier complaint.
+  - A new topic needs an explicit signal ("different question…") or a general question that doesn't refer back to the conversation.
+  - Default to *same topic*: losing reported facts is worse than keeping them.
+- **Urgency is re-checked every turn** across everything the user said in the topic, so "my eye hurts" plus, later, "and I feel sick to my stomach" is caught.
+- **Bounded context:** the last 6 messages go to the model word for word. Older turns survive only as the structured fact list, which keeps details exactly (an LLM summary could drop a correction).
+- **Same safeguards, one stricter:** the claim verifier still runs on every sentence. The new rule: a *negated* or *"less likely"* claim is removed unless the cited passage says so.
+  - It caught "uveitis doesn't usually cause pain", cited to a page that lists pain as a symptom.
+  - That's the classic "valid citation, unsupported claim".
+
+**Evaluation lessons (interview material):**
+- **The first run on my own dev conversations found 5 logic bugs**, for example an over-eager topic detector wiping context. I fixed them, so that set became a dev set.
+- **I wrote a held-out set before running it.** It still found 2 urgent misses: a post-surgery very red eye with persistent pain, and a mild injury. The honest number is the pre-fix held-out run; anything after the fixes is labelled exploratory.
+- **The fine-tuned adapter (D\*) was worse in chat:**
+  - template loops ("I can't tell from your symptoms alone…");
+  - questions about the previous topic leaking into a new one;
+  - roughly double the latency, from the loops.
+
+  It was trained on single-turn, extractive templates, and that's exactly what it reproduces.
+- **The proposed next training run:** multi-turn examples whose targets are *paraphrased but claim-verified*, with no fixed opening templates, and with follow-up turns and topic changes. It has to be judged on a new held-out chat set.
+
+### 7e. Too safe to be useful: the "Explain" style
+- **The feedback:** on a simple floaters question, the strict chat mostly said "see an eye doctor".
+- **Three causes:**
+  1. **The prompt** said "never use your own knowledge".
+  2. **The verifier deleted** every sentence a source didn't back word for word, so mostly referrals survived.
+  3. **Two bugs of my own.** A curly apostrophe in the NEI text ("don’t") defeated my negation check, and an uncited sentence was compared against nothing. Together they deleted the correct, reassuring line "most floaters come and go and don't need treatment".
+- **The design response** is a product decision, made explicitly:
+  - The default **Explain** style keeps the AI's general explanation instead of deleting it. It strips the citation and labels the sentence, so you can always tell source-backed from not.
+  - Contradictions are still removed.
+  - At most one referral per answer.
+  - The urgent notice is untouched.
+  - **Strict** stays available.
+- **Interview point:** "Safety and usefulness trade off. I made the trade visible: every sentence is either source-numbered, labelled as general explanation, or removed because a source contradicts it. The emergency path doesn't depend on the style."
+- **More sources:** I added 22 NEI pages for gaps users actually hit (eye twitching, eye strain with close work, contact lenses, a white pupil in a child). They went into a *separate* chat corpus, because the frozen evaluation pins the original corpus by hash.
+
+---
+
 ## 8. Cross-cutting lessons (good "what did you learn" answers)
 
 1. **Measure before you optimise.** Every step has an evaluation file and a failure log.
@@ -742,3 +788,5 @@ Good candidates:
 - **2026-10-10:** added 7.5 (test-set results, blinded scoring, why the validation gains didn't transfer); new lessons 9–10; updated the Q&A.
 - **2026-10-10:** added 7b (the Streamlit demo: rerun model, caching, testing).
 - **2026-10-10:** added 7c (packaging: what's versioned, the README, the Playwright demo recording).
+- **2026-10-10:** added 7d (multi-turn chat: patient facts, follow-ups, the stricter verifier, the dev vs held-out lessons).
+- **2026-10-10:** added 7e (Explain vs Strict style; the 72-page chat corpus).
