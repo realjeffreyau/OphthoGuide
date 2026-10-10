@@ -1,11 +1,9 @@
-"""End-to-end checks of the Streamlit demo (app.py) with Streamlit's AppTest.
+"""End-to-end checks of the Streamlit chat (app.py) with Streamlit's AppTest and the real model.
 
-Runs the real app script and the real model (a few minutes):
-  1. ordinary question with B*  -> answer, sources, passages shown == passages in prompt
-  2. unsupported question with B -> withheld/no-evidence handling, still consistent
-  3. urgent question with D*    -> urgent notice shown first
-  4. version switch D -> B      -> no exception, adapter swapped
-  5. missing adapter (env override) -> clear error, no crash
+Covers: a first question with sources, a short follow-up linked to the earlier complaint,
+a correction, a new symptom that makes the conversation urgent, switching model versions
+(label + adapter per message), New chat clearing history and patient context, and a
+missing adapter. Takes several minutes.
 
   .venv/bin/python scripts/test_app.py
 """
@@ -19,68 +17,78 @@ from streamlit.testing.v1 import AppTest
 
 ROOT = Path(__file__).resolve().parent.parent
 APP = str(ROOT / "app.py")
-MATCH = "Displayed passages match the prompt"
+FAILS = 0
 
 
-def ask(at: AppTest, version: str, question: str) -> AppTest:
-    at.sidebar.radio[0].set_value(version)
-    at.text_area[0].input(question)
-    at.button[0].click()  # the form's submit button
+def check(name: str, cond: bool, detail: str = "") -> None:
+    global FAILS
+    FAILS += not cond
+    print(f"{'PASS' if cond else 'FAIL'}  {name}" + ("" if cond else f" — {detail}"), flush=True)
+
+
+def say(at: AppTest, text: str, version: str | None = None) -> AppTest:
+    if version:
+        at.sidebar.radio[0].set_value(version)
+    at.chat_input[0].set_value(text)
     return at.run()
 
 
-def texts(elements) -> list[str]:
-    return [e.value for e in elements]
-
-
-def check(name: str, cond: bool, detail: str = "") -> bool:
-    print(f"{'PASS' if cond else 'FAIL'}  {name}" + (f" — {detail}" if detail and not cond else ""))
-    return cond
+def captions(at: AppTest) -> list[str]:
+    return [c.value for c in at.caption] + [c.value for c in at.sidebar.caption]
 
 
 def main() -> int:
-    ok = True
-    at = AppTest.from_file(APP, default_timeout=600).run()
-    ok &= check("app loads without exception", not at.exception, str(at.exception))
+    at = AppTest.from_file(APP, default_timeout=900).run()
+    check("app loads", not at.exception, str(at.exception))
+    check("default version is B*", at.sidebar.radio[0].value == "B*")
 
-    at = ask(at, "B*", "What is glaucoma?")
-    caps = texts(at.caption)
-    ok &= check("1 B*: no exception", not at.exception, str(at.exception))
-    ok &= check("1 B*: passages match prompt", any(c.startswith("✓ " + MATCH) for c in caps), str(caps))
-    ok &= check("1 B*: sources listed", any("**Sources**" in m for m in texts(at.markdown)))
-    ok &= check("1 B*: passages expanders present", len(at.expander) >= 2)
+    at = say(at, "My right eye has been blurry and a bit red.")
+    check("turn 1: no exception", not at.exception, str(at.exception))
+    check("turn 1: two chat messages", len(at.chat_message) == 2, str(len(at.chat_message)))
+    check("turn 1: labelled with version", any("Answered by B*" in c for c in captions(at)))
+    check("turn 1: sources expander", any(e.label.startswith(("Sources", "Evidence")) for e in at.expander))
+    check("turn 1: context panel shows the reported eye", any("Eye: right eye" in c for c in captions(at)))
 
-    at = ask(at, "B", "How much does LASIK cost?")
-    caps = texts(at.caption)
-    ok &= check("2 B unsupported: no exception", not at.exception, str(at.exception))
-    ok &= check("2 B unsupported: passages match prompt", any(c.startswith("✓ " + MATCH) for c in caps), str(caps))
+    at = say(at, "Two days. No pain.")
+    caps = captions(at)
+    check("follow-up: timing remembered", any("Timing: 2 days" in c for c in caps), str(caps))
+    check("follow-up: denial remembered", any("do NOT have: eye pain" in c for c in caps))
+    check("follow-up: search used the earlier complaint", any("Search query:" in c and "blurry" in c for c in caps))
 
-    at = ask(at, "D*", "I suddenly see flashes and a curtain over my vision. What should I do?")
-    errs = texts(at.error)
-    ok &= check("3 D* urgent: no exception", not at.exception, str(at.exception))
-    ok &= check("3 D* urgent: urgent notice shown", any("Safety notice" in e for e in errs), str(errs))
-    ok &= check("3 D* urgent: passages match prompt",
-                any(c.startswith("✓ " + MATCH) for c in texts(at.caption)))
+    at = say(at, "Actually, it's my left eye, not the right.")
+    check("correction: eye updated with history", any("Eye: left eye (corrected from right eye)" in c
+                                                      for c in captions(at)), str(captions(at)))
 
-    at = ask(at, "D", "What causes dry eye?")
-    ok &= check("4a D raw: no exception, adapter used", not at.exception
-                and any("adapter: adapters/selected" in c for c in texts(at.caption)))
-    at = ask(at, "B", "What causes dry eye?")
-    ok &= check("4b switch to B: no exception, no adapter", not at.exception
-                and any("adapter: none" in c for c in texts(at.caption)))
+    at = say(at, "Now I suddenly see flashes and a dark curtain over part of my vision.")
+    errs = [e.value for e in at.error]
+    check("new symptom: urgent notice shown", any("Safety notice" in e for e in errs), str(errs))
+
+    at = say(at, "What is glaucoma?", version="D*")
+    caps = captions(at)
+    check("switch: newest reply labelled D*", any("Answered by D* · explain · adapter: adapters/selected" in c for c in caps))
+    check("switch: older replies keep their label", any("Answered by B* · explain · adapter: none" in c for c in caps))
+    at = say(at, "How is it treated?", version="B*")
+    check("switch back: reply labelled B* with no adapter",
+          [c for c in captions(at) if c.startswith("Answered by")][-1].startswith("Answered by B* · explain · adapter: none"))
+
+    at.sidebar.button[0].click()
+    at = at.run()
+    check("new chat: history cleared", len(at.chat_message) == 0, str(len(at.chat_message)))
+    check("new chat: patient context cleared", any(c == "Nothing yet." for c in captions(at)))
 
     os.environ["OPHTHOGUIDE_ADAPTER"] = str(ROOT / "adapters" / "does_not_exist")
     try:
         at2 = AppTest.from_file(APP, default_timeout=600).run()
-        at2 = ask(at2, "D", "What is a cataract?")
-        errs = texts(at2.error)
-        ok &= check("5 missing adapter: clear error, no exception",
-                    not at2.exception and any("Adapter not found" in e for e in errs), str(errs))
+        at2 = say(at2, "What is a cataract?", version="D")
+        errs = [e.value for e in at2.error]
+        check("missing adapter: clear error, no crash, nothing added",
+              not at2.exception and any("adapter is missing" in e for e in errs) and len(at2.chat_message) == 0,
+              str(errs))
     finally:
         del os.environ["OPHTHOGUIDE_ADAPTER"]
 
-    print("ALL PASS" if ok else "SOME CHECKS FAILED")
-    return 0 if ok else 1
+    print("ALL PASS" if not FAILS else f"{FAILS} FAILED")
+    return 1 if FAILS else 0
 
 
 if __name__ == "__main__":

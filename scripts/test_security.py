@@ -11,6 +11,7 @@ from streamlit.testing.v1 import AppTest
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import assistant
+import chat
 
 
 class DemoSecurityTests(unittest.TestCase):
@@ -19,8 +20,7 @@ class DemoSecurityTests(unittest.TestCase):
 
     def submit(self, app, question):
         app.sidebar.radio[0].set_value("B")
-        app.text_area[0].input(question)
-        app.button[0].click()
+        app.chat_input[0].set_value(question)
         return app.run()
 
     def test_server_defaults(self):
@@ -31,7 +31,7 @@ class DemoSecurityTests(unittest.TestCase):
         self.assertFalse(config["browser"]["gatherUsageStats"])
 
     def test_blank_input_never_generates(self):
-        with patch.object(assistant, "generate_answer") as generate:
+        with patch.object(chat, "generate_chat") as generate:
             app = self.submit(self.app(), "   ")
         generate.assert_not_called()
         self.assertFalse(app.exception)
@@ -41,16 +41,16 @@ class DemoSecurityTests(unittest.TestCase):
         spec = importlib.util.spec_from_file_location("ophthoguide_app", ROOT / "app.py")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        with patch.object(assistant, "generate_answer") as generate:
+        with patch.object(chat, "generate_chat") as generate:
             with self.assertRaises(ValueError):
-                module.run("x" * 2001, "B")
+                module.run_turn("x" * 2001, "B", [], chat.PatientContext(), "t")
         generate.assert_not_called()
 
     def test_internal_error_is_not_displayed(self):
         private_message = "PRIVATE_TEST_PATH_AND_CREDENTIAL"
         with patch.object(assistant, "configure"), \
-             patch.object(assistant, "retrieve_evidence", return_value=([], False)), \
-             patch.object(assistant, "generate_answer", side_effect=RuntimeError(private_message)):
+             patch.object(chat, "retrieve_evidence", return_value=([], False)), \
+             patch.object(chat, "generate_chat", side_effect=RuntimeError(private_message)):
             app = self.submit(self.app(), "What is glaucoma?")
         self.assertFalse(app.exception)
         self.assertTrue(app.error)
@@ -72,6 +72,15 @@ class DemoSecurityTests(unittest.TestCase):
         for question in [" " * 1000000, "difference between a and " + "a and a" * 100000,
                          "compare a to a" + "!" * 100000]:
             self.assertEqual(assistant.comparison_parts(question), [])
+
+
+    def test_model_html_is_not_rendered(self):
+        text, _ = chat.render_citations("<script>alert(1)</script> Glaucoma [nei_002_chunk_01].",
+                                        [{"chunk_id": "nei_002_chunk_01"}])
+        self.assertIn("<script>", text)                     # left as text for Markdown to escape
+        src = (ROOT / "app.py").read_text()
+        self.assertNotIn("unsafe_allow_html", src)
+        self.assertNotIn("st.html", src)
 
 
 if __name__ == "__main__":

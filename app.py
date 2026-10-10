@@ -1,21 +1,21 @@
-"""OphthoGuide local demo.
+"""OphthoGuide chat demo.
 
     .venv/bin/streamlit run app.py
 
-Ask a question, read the answer, inspect exactly which NEI passages the model received,
-and compare the evaluated versions (A–D raw model output, B*/D* full pipeline).
+A multi-turn conversation about eye health, grounded in National Eye Institute passages.
+The conversation layer is scripts/chat.py on top of the security-hardened assistant
+(scripts/assistant.py). The original single-turn evaluated assistant is archived as text;
+data/results/FROZEN_CONFIG.json describes that historical snapshot.
 
-The demo uses the security-hardened assistant. The original evaluated assistant is
-archived as text; data/results/FROZEN_CONFIG.json describes that historical snapshot.
+Conversations live only in this browser session's memory; nothing is written to disk.
 """
 from __future__ import annotations
 
-import hashlib
+import copy
 import os
-import re
 import sys
 import threading
-import time
+import uuid
 from pathlib import Path
 
 import streamlit as st
@@ -23,9 +23,8 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
-import assistant  # noqa: E402
-from assistant import (MAX_TOKENS, MODEL_ID, SYSTEM_PROMPT, TEMPERATURE, URGENT_NOTICE,  # noqa: E402
-                       build_user_message, check_citations, generate_answer, retrieve_evidence)
+import chat  # noqa: E402
+from assistant import MODEL_ID  # noqa: E402
 
 # Overridable so the missing-adapter error path can be tested.
 ADAPTER_DIR = Path(os.environ.get("OPHTHOGUIDE_ADAPTER", ROOT / "adapters" / "selected"))
@@ -33,22 +32,15 @@ MODEL_REVISION = "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495"
 NEI_CREDIT = "Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH)."
 MAX_QUESTION_CHARS = 2000
 
-# name: (label, uses adapter, uses retrieval, full pipeline, description)
-VERSIONS = {
-    "B*": ("B* — base model + retrieval + safeguards", False, True, True,
-           "Recommended. Retrieval, claim verifier, urgent-care notice, source caveats. "
-           "Best overall in the evaluation."),
-    "D*": ("D* — fine-tuned + retrieval + safeguards", True, True, True,
-           "Same pipeline with the LoRA adapter: shorter, more extractive answers; "
-           "weaker at correcting false premises."),
-    "B": ("B — base model + retrieval (raw)", False, True, False,
-          "Model output only, no verifier or urgent notice."),
-    "D": ("D — fine-tuned + retrieval (raw)", True, True, False,
-          "Model output only, with the LoRA adapter."),
-    "A": ("A — base model, no retrieval (raw)", False, False, False,
-          "No passages supplied. Under the grounding prompt it mostly declines."),
-    "C": ("C — fine-tuned, no retrieval (raw)", True, False, False,
-          "Least safe in testing: it often answered emergencies with questions."),
+VERSIONS = {  # name: (label, description)
+    "B*": ("B* — base model + retrieval + safeguards",
+           "Default (best in the single-turn evaluation). Retrieval, claim verifier, urgent-care notice."),
+    "D*": ("D* — fine-tuned + retrieval + safeguards",
+           "LoRA adapter with the same safeguards. It did not beat B* in the single-turn evaluation."),
+    "B": ("B — base model + retrieval (raw)", "Model output only: no claim verifier, no urgent notice."),
+    "D": ("D — fine-tuned + retrieval (raw)", "Model output only, with the LoRA adapter."),
+    "A": ("A — base model, no retrieval (raw)", "No passages. For comparison only."),
+    "C": ("C — fine-tuned, no retrieval (raw)", "Least safe in testing. For comparison only."),
 }
 
 
@@ -58,174 +50,165 @@ def generation_lock() -> threading.Lock:
     return threading.Lock()
 
 
-def question_seed(question: str) -> int:
-    return int(hashlib.sha256(question.strip().lower().encode()).hexdigest()[:8], 16)
+def new_chat() -> None:
+    st.session_state.messages = []
+    st.session_state.ctx = chat.PatientContext()
+    st.session_state.conv_id = uuid.uuid4().hex[:12]
+    st.session_state.pop("last_error", None)
 
 
-def run(question: str, version: str) -> dict:
-    """Answer with one version. Raises on model/adapter problems (shown by the caller)."""
-    if not question.strip() or len(question) > MAX_QUESTION_CHARS:
-        raise ValueError(f"Enter a question of 1–{MAX_QUESTION_CHARS} characters.")
-    _, uses_adapter, uses_retrieval, full, _ = VERSIONS[version]
+def validate(message: str) -> str:
+    if not message or not message.strip() or len(message) > MAX_QUESTION_CHARS:
+        raise ValueError(f"Enter a message of 1–{MAX_QUESTION_CHARS} characters.")
+    return message.strip()
+
+
+def run_turn(message: str, version: str, messages: list[dict], ctx: chat.PatientContext,
+             conv_id: str, style: str = "explain") -> dict:
+    """One assistant turn. Raises ValueError for bad input before any model work."""
+    message = validate(message)
+    uses_adapter = chat.VERSIONS[version][0]
     if uses_adapter and not (ADAPTER_DIR / "adapters.safetensors").exists():
-        raise FileNotFoundError(
-            "Adapter not found. Train and select one "
-            "(scripts/select_checkpoint.py --run adapters/run_01 --select) or pick a base-model version.")
-    seed = question_seed(question)
+        raise FileNotFoundError("adapter missing")
     with generation_lock():
-        # assistant keeps the loaded model in a module global, which survives Streamlit reruns;
-        # configure() only reloads when the adapter changes.
-        assistant.configure(str(ADAPTER_DIR) if uses_adapter else None)
-        t0 = time.perf_counter()
-        if full:
-            rec = assistant.answer(question, retrieval=True, seed=seed)
-            ver = rec.get("verification") or {}
-            out = {"answer": rec["answer"], "results": rec["results"], "weak": rec["weak_evidence"],
-                   "prompt": rec["prompt"], "citations": rec["citations"],
-                   "removed": ver.get("removed", []),
-                   "partial": [c for c in ver.get("checks", []) if c["status"] == "partial"],
-                   "caveats": rec.get("caveats") or [], "urgent": rec["urgent"]}
-        else:
-            results, weak = retrieve_evidence(question) if uses_retrieval else ([], False)
-            prompt = build_user_message(question, results, weak, uses_retrieval)
-            text = generate_answer(SYSTEM_PROMPT, prompt, seed=seed)
-            out = {"answer": text, "results": results, "weak": weak, "prompt": prompt,
-                   "citations": check_citations(text, results, weak), "removed": [],
-                   "partial": [], "caveats": [], "urgent": False}
-        out["seconds"] = time.perf_counter() - t0
-    out.update(version=version, retrieval=uses_retrieval, full=full, seed=seed,
-               adapter=os.path.relpath(ADAPTER_DIR, ROOT) if uses_adapter else None)
-    return out
+        return chat.respond(message, messages, ctx, version, str(ADAPTER_DIR), conv_id, style)
 
 
-def supplied(out: dict) -> list[dict]:
-    """The passages the model actually received (none if retrieval was off or evidence weak)."""
-    return [] if (out["weak"] or not out["retrieval"]) else out["results"]
+def show_assistant(m: dict, show_prompt: bool) -> None:
+    if m["urgent"] and m["safeguards"]:
+        st.error(chat.URGENT_NOTICE)
+    if not m["safeguards"]:
+        st.caption("⚠ Raw model output for comparison — no claim verifier, no urgent-care notice.")
+    text, sources = chat.render_citations(m["content"], m["results"])
+    st.markdown(text)
+    if m["citations"]["invalid"]:
+        st.caption("⚠ ˀ marks a cited passage ID that was not supplied to the model: "
+                   + ", ".join(m["citations"]["invalid"]))
+    if m.get("general"):
+        st.caption("Sentences without a source number are the AI's general explanation, not checked "
+                   "against the NEI pages, and may contain errors.")
+    adapter = os.path.relpath(m["adapter"], ROOT) if m["adapter"] else "none"
+    style = "explain" if m.get("style", "strict") == "explain" else "strict sources"
+    st.caption(f"Answered by {m['version']} · {style} · adapter: {adapter} · {m['seconds']:.0f} s")
 
-
-def passages_match_prompt(out: dict) -> bool:
-    """Every displayed passage is in the prompt, and no other passage ID is."""
-    shown = supplied(out)
-    in_prompt = set(re.findall(r"^\[([a-z]+_\d+_chunk_\d+)\]$", out["prompt"], re.M))
-    return (in_prompt == {p["chunk_id"] for p in shown}
-            and all(p["text"] in out["prompt"] for p in shown))
-
-
-def show_answer(out: dict) -> None:
-    by_id = {r["chunk_id"]: r for r in out["results"]}
-    if out["full"] and out["urgent"]:
-        st.error(URGENT_NOTICE)
-    if not out["full"]:
-        st.warning("Raw model output for comparison: no claim verifier, no urgent-care notice.")
-    st.markdown(out["answer"])
-
-    cit = out["citations"]
-    if cit["valid"]:
-        st.markdown("**Sources**")
-        for cid in cit["valid"]:
-            r = by_id[cid]
-            upd = f" (updated {r['updated']})" if r.get("updated") else ""
-            st.markdown(f"- `{cid}` [{r['title']} — {r['section']}]({r['url']}){upd}")
-    if cit["invalid"]:
-        st.error(f"Cited IDs that were not supplied to the model: {', '.join(cit['invalid'])}")
-    if out["partial"]:
-        with st.expander(f"◐ Partly supported statements ({len(out['partial'])})"):
-            for c in out["partial"]:
-                st.markdown(f"- “{c['claim']}” — source says [{c['id']}]: “{c['quote']}”")
-    if out["removed"]:
-        with st.expander(f"Removed as unsupported by the sources ({len(out['removed'])})"):
-            for c in out["removed"]:
-                st.markdown(f"- ~~{c['claim']}~~")
-    if out["caveats"]:
-        st.markdown("**Source caveats** (verbatim from the cited pages, not covered above)")
-        for c in out["caveats"]:
-            st.markdown(f"> {c['text']} `[{c['id']}]`")
-
-
-def show_evidence(out: dict, show_prompt: bool) -> None:
-    st.divider()
-    shown = supplied(out)
-    if not out["retrieval"]:
-        st.info("Retrieval is off for this version: no passages were supplied to the model.")
-    elif out["weak"]:
-        st.info("Evidence withheld: no passage covered enough of the question, so the model was "
-                "told NO USABLE EVIDENCE. Retrieval had found:")
-        for r in out["results"]:
-            st.caption(f"{r['chunk_id']} — {r['title']} › {r['section']} (coverage {r.get('coverage')})")
-    else:
-        st.markdown(f"**Passages supplied to the model ({len(shown)})**")
-        for r in shown:
+    with st.expander(f"Sources ({len(sources)})" if sources else "Evidence details"):
+        for i, r in enumerate(sources, 1):
             upd = f" · updated {r['updated']}" if r.get("updated") else ""
-            with st.expander(f"{r['chunk_id']} — {r['title']} › {r['section']}"):
-                st.markdown(f"[{r['url']}]({r['url']}){upd}")
-                st.text(r["text"])
-    ok = passages_match_prompt(out)
-    st.caption(("✓ " if ok else "✗ ") + "Displayed passages match the prompt sent to the model.")
-    if show_prompt:
-        with st.expander("Exact prompt (user message) sent to the model"):
-            st.code(out["prompt"], language=None)
-    st.caption(f"{out['seconds']:.1f} s · {MODEL_ID} @ {MODEL_REVISION[:8]} · adapter: "
-               f"{out['adapter'] or 'none'} · temp {TEMPERATURE}, top_p 0.9, max {MAX_TOKENS} "
-               f"tokens · seed {out['seed']}")
-    st.caption(NEI_CREDIT)
+            st.markdown(f"**{i}. [{r['title']} — {r['section']}]({r['url']})**{upd}")
+            st.text(r["text"])
+        if not m["results"]:
+            if m["weak"]:
+                st.markdown("No passage covered this well enough, so the model was told it had **no usable "
+                            "evidence**. Retrieval had found: "
+                            + (", ".join(r["chunk_id"] for r in m["retrieved"]) or "nothing"))
+            else:
+                st.markdown("Retrieval is off for this version: no passages were supplied.")
+        unused = [r["chunk_id"] for r in m["results"] if r not in sources]
+        if unused:
+            st.caption("Also supplied but not cited: " + ", ".join(unused))
+        if m["partial"]:
+            st.markdown("**◐ Partly supported** — the source's own wording:")
+            for c in m["partial"]:
+                st.caption(f"“{c['quote']}” [{c['id']}]")
+        if m.get("general"):
+            st.markdown("**General explanation** (not from the NEI pages):")
+            for g in m["general"]:
+                st.caption("◇ " + g)
+        if m["removed"]:
+            st.markdown("**Removed because the sources contradict them or do not support them:**"
+                        if m.get("style") == "explain" else
+                        "**Removed because the sources do not support them:**")
+            for c in m["removed"]:
+                st.caption("✗ " + c["claim"])
+        if m["caveats"]:
+            st.markdown("**Source caveats** (verbatim, not covered above):")
+            for c in m["caveats"]:
+                st.caption(f"{c['text']} [{c['id']}]")
+        st.caption(f"Search query: {m['query']}" + (" · new topic" if m["topic_changed"] else ""))
+        if show_prompt:
+            st.code(m["prompt"], language=None)
 
 
 def main() -> None:
     st.set_page_config(page_title="OphthoGuide", page_icon="👁", layout="centered")
-    st.title("OphthoGuide")
-    st.markdown(
-        "An **eye-health education** assistant. It explains topics using passages from National "
-        "Eye Institute pages and cites them. It is **not a diagnosis tool** and does not replace "
-        "an eye doctor. For sudden vision changes, an eye injury, or severe eye pain, see an eye "
-        "doctor or go to the emergency room now.")
-    with st.expander("How well does it work? (evaluation summary)"):
-        st.markdown(
-            "- Frozen 150-case test set, blinded scoring of 240 answers (AI-scored, **no clinician review**).\n"
-            "- Retrieval roughly doubled correctness over the base model (mean 1.25 vs 0.60 on a 0–2 scale).\n"
-            "- Fine-tuning did not improve overall correctness (1.08 vs 1.25).\n"
-            "- **No version met the zero-urgent-failure criterion**; the urgent detector caught 16 of 21 test emergencies.\n"
-            "- Details: `data/results/RESULTS.md`.")
+    if "messages" not in st.session_state:
+        new_chat()
 
     with st.sidebar:
-        st.header("Version")
+        st.header("OphthoGuide")
+        if st.button("New chat", icon="➕", use_container_width=True):
+            new_chat()
+        st.subheader("Model version")
         version = st.radio("Model version", list(VERSIONS), format_func=lambda v: VERSIONS[v][0],
                            index=0, label_visibility="collapsed")
-        st.caption(VERSIONS[version][4])
+        st.caption(VERSIONS[version][1])
+        strict = st.toggle("Strict: sources only", value=False,
+                           help="Off: explains possibilities, using NEI pages where they apply and general "
+                                "knowledge otherwise (marked). On: only statements the NEI pages support.")
         show_prompt = st.toggle("Show exact prompt", value=False)
-        st.caption("One model configuration is kept in memory; switching between base and "
-                   "fine-tuned versions reloads it (a few seconds).")
+        st.subheader("What you've told me")
+        lines = st.session_state.ctx.lines()
+        for line in lines:
+            st.caption("• " + line)
+        st.caption("Only what you wrote — never the assistant's suggestions. To correct something, "
+                   "just say so (e.g. “actually, my left eye”)." if lines else "Nothing yet.")
+        st.caption("This conversation is kept only in this browser session and is not saved.")
+        with st.expander("How well does it work?"):
+            st.markdown(
+                "- **Single-turn test** (150 cases, blinded, AI-scored, no clinician review): retrieval roughly "
+                "doubled correctness; fine-tuning did not improve it; no version met the "
+                "zero-urgent-failure criterion.\n"
+                "- **Multi-turn chat test**: see `data/evaluation_chat/RESULTS.md`.")
 
-    with st.form("ask"):
-        question = st.text_area("Your question", placeholder="e.g. What is glaucoma?", height=90,
-                                max_chars=MAX_QUESTION_CHARS)
-        submitted = st.form_submit_button("Ask")
+    st.title("👁 OphthoGuide")
+    st.caption("An AI learning tool for eye health. It suggests possibilities and explains them, using "
+               "National Eye Institute pages where they apply — it **can make mistakes** and is not a "
+               "diagnosis. For sudden vision changes, an eye injury, or severe eye pain, see an eye doctor "
+               "or go to the emergency room now.")
 
-    if submitted:
-        if not question.strip():
-            st.warning("Please type a question.")
-            return
-        with st.spinner(f"Answering with {version}…"):
-            try:
-                out = run(question, version)
-            except FileNotFoundError:
-                st.error("Adapter not found or a required model file is missing. "
-                         "See README for setup or pick a base-model version.")
-                return
-            except ValueError:
-                st.error(f"Enter a question of 1–{MAX_QUESTION_CHARS} characters.")
-                return
-            except Exception:  # model download/load/generation failure
-                st.error("The model could not be loaded or run. "
-                         f"Expected {MODEL_ID} at revision {MODEL_REVISION[:8]} in the Hugging Face "
-                         "cache; see README for setup.")
-                return
-        st.session_state["last"] = out
-    out = st.session_state.get("last")
-    if out:
-        st.subheader(f"Answer ({out['version']})")
-        show_answer(out)
-        show_evidence(out, show_prompt)
+    for m in st.session_state.messages:
+        with st.chat_message(m["role"]):
+            if m["role"] == "user":
+                st.markdown(m["content"])
+            else:
+                show_assistant(m, show_prompt)
+
+    prompt = st.chat_input("Describe what's happening with your eyes, or ask a question",
+                           max_chars=MAX_QUESTION_CHARS)
+    if prompt is not None:
+        if not prompt.strip():
+            st.warning("Please type a message.")
+        else:
+            with st.chat_message("user"):
+                st.markdown(prompt)
+            # Work on a copy so a failed turn leaves the conversation and context untouched.
+            ctx = copy.deepcopy(st.session_state.ctx)
+            error = None
+            with st.chat_message("assistant"), st.spinner(f"Thinking ({version})…"):
+                try:
+                    reply = run_turn(prompt, version, st.session_state.messages, ctx,
+                                     st.session_state.conv_id, "strict" if strict else "explain")
+                except FileNotFoundError:
+                    error = ("The fine-tuned adapter is missing. Train and select one "
+                             "(scripts/select_checkpoint.py) or choose a base-model version.")
+                except ValueError:
+                    error = f"Enter a message of 1–{MAX_QUESTION_CHARS} characters."
+                except Exception:  # model load/generation failure; details stay out of the UI
+                    error = ("The model could not be loaded or run. Check the local setup in README.md "
+                             "and try again.")
+            if error:
+                st.session_state.last_error = error
+            else:
+                st.session_state.ctx = ctx
+                st.session_state.messages.append({"role": "user", "content": prompt.strip(),
+                                                  "topic_start": reply["topic_changed"]})
+                st.session_state.messages.append(reply)
+                st.session_state.pop("last_error", None)
+            st.rerun()
+    if st.session_state.get("last_error"):
+        st.error(st.session_state.last_error)
+
+    st.caption(NEI_CREDIT + f" · {MODEL_ID} @ {MODEL_REVISION[:8]}")
 
 
-if __name__ == "__main__":
-    main()
+main()
