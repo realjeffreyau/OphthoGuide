@@ -217,9 +217,14 @@ def reuse_check(text: str) -> tuple[str, list[str]]:
 
 
 def main() -> int:
+    global SOURCES_CSV, OUT_JSONL, REPORT_MD
     ap = argparse.ArgumentParser()
     ap.add_argument("--refresh", action="store_true", help="ignore HTML cache and refetch")
+    ap.add_argument("--sources", type=Path, default=SOURCES_CSV, help="page list CSV (id,topic,url)")
+    ap.add_argument("--out", type=Path, default=OUT_JSONL, help="documents.jsonl to write")
     args = ap.parse_args()
+    SOURCES_CSV, OUT_JSONL = args.sources.resolve(), args.out.resolve()
+    REPORT_MD = OUT_JSONL.parent / "collection_report.md"
 
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     OUT_JSONL.parent.mkdir(parents=True, exist_ok=True)

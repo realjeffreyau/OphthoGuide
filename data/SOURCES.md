@@ -50,3 +50,17 @@ documents, such as journal articles, are also copyrighted.
 ## Expansion log
 - **2026-10-08:** 30 → 50 pages. Added 20 pages from `nei_expansion_candidates.csv`: AREDS 2, wet AMD treatments, cataract surgery, cataract causes and types, cataracts and the eye, diabetic retinopathy injections and laser, dry eye causes and testing, glaucoma eye pressure, medicines, surgery and types, pink eye causes, treatment and newborns, types of refractive errors, refractive surgery (LASIK), and retinal detachment types and causes. Each page went through the same reuse scan and came back clean.
 - **Known source disagreement:** pink eye duration. nei_008 (updated 2025-11-05) says "7 to 10 days"; nei_046 (updated 2019-06-26) says "1 to 2 weeks… sometimes 3 weeks or more" for viral pink eye. Answers should give both, with dates.
+
+
+## Chat corpus expansion (2026-10-10)
+
+`data/sources/nei_pages_chat.csv` lists the original 50 pages plus 22 NEI pages (nei_051–072).
+- **Collected into:** `data/processed_chat/`. All 22 are `public_domain_verified`, and `validate_documents.py` passes.
+- **Kept separate:** the frozen single-turn evaluation pins `data/processed/` and `scripts/retrieval.py` by hash, so the chat corpus lives beside them and the original corpus is unchanged.
+
+**What was added:**
+- **13 vetted candidates:** color blindness ×3, corneal ×3, glaucoma causes and treatment, living with low vision, eyeglasses, retinal-tear laser/freeze, retinal-detachment surgery, vitrectomy.
+- **7 condition pages found on the NEI index:** blepharospasm, convergence insufficiency, Graves' eye disease, idiopathic intracranial hypertension, retinoblastoma, retinopathy of prematurity, Stargardt disease.
+- **2 healthy-vision pages:** contact lenses; sports and eye safety.
+
+**Gap that remains:** NEI has no page on screen-related eye strain or eye injuries in general. The likely addresses return 404, so those questions rely on related pages or on the AI's labelled general explanation.

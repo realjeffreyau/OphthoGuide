@@ -12,6 +12,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "data" / "processed" / "documents.jsonl"
+if len(__import__("sys").argv) > 1:  # optional path, e.g. data/processed_chat/documents.jsonl
+    DOCS = Path(__import__("sys").argv[1]).resolve()
 
 REQUIRED = ["id", "title", "url", "updated", "retrieved", "topic", "reuse", "text"]
 REUSE_OK = {"public_domain_verified"}
