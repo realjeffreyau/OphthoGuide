@@ -1,5 +1,10 @@
 # OphthoGuide
 
+[![Checks](https://github.com/realjeffreyau/OphthoGuide/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/realjeffreyau/OphthoGuide/actions/workflows/checks.yml)
+[![Python 3.14](https://img.shields.io/badge/Python-3.14-3776AB?logo=python&logoColor=white)](#quick-start)
+[![MLX · Apple silicon](https://img.shields.io/badge/MLX-Apple%20silicon-111111?logo=apple&logoColor=white)](#quick-start)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 An eye-health education assistant that answers questions from public-domain **National Eye Institute (NEI)** pages, cites every claim, says when its sources don't cover something, and puts urgent-care guidance first. It runs entirely on a Mac with a 4-billion-parameter open model ([Qwen3-4B, 4-bit, MLX](https://huggingface.co/Qwen/Qwen3-4B-MLX-4bit)).
 
 > **Not medical advice.** OphthoGuide is an educational research project. It does not diagnose, has not been reviewed by a clinician, and did **not** meet its own urgent-safety release criterion (see [Results](#results)). For sudden vision changes, an eye injury, or severe eye pain, see an eye doctor or go to the emergency room.
