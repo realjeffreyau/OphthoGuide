@@ -1,0 +1,962 @@
+{
+ "6ac19734": {
+  "version": "A",
+  "case_id": "tc_003"
+ },
+ "ca779825": {
+  "version": "A",
+  "case_id": "tc_004"
+ },
+ "0a6c58d7": {
+  "version": "A",
+  "case_id": "tc_005"
+ },
+ "9637b50e": {
+  "version": "A",
+  "case_id": "tc_007"
+ },
+ "58a7ee72": {
+  "version": "A",
+  "case_id": "tc_010"
+ },
+ "8805f5f1": {
+  "version": "A",
+  "case_id": "tc_014"
+ },
+ "649307d9": {
+  "version": "A",
+  "case_id": "tc_021"
+ },
+ "ef88646e": {
+  "version": "A",
+  "case_id": "tc_024"
+ },
+ "c4580260": {
+  "version": "A",
+  "case_id": "tc_026"
+ },
+ "d722ac67": {
+  "version": "A",
+  "case_id": "tc_033"
+ },
+ "9127112f": {
+  "version": "A",
+  "case_id": "tc_035"
+ },
+ "15bc4ae1": {
+  "version": "A",
+  "case_id": "tc_038"
+ },
+ "d089811b": {
+  "version": "A",
+  "case_id": "tc_042"
+ },
+ "155f2b94": {
+  "version": "A",
+  "case_id": "tc_053"
+ },
+ "9fadf2a4": {
+  "version": "A",
+  "case_id": "tc_056"
+ },
+ "6864497e": {
+  "version": "A",
+  "case_id": "tc_063"
+ },
+ "b72a9172": {
+  "version": "A",
+  "case_id": "tc_068"
+ },
+ "2f5b9d26": {
+  "version": "A",
+  "case_id": "tc_074"
+ },
+ "1f6d1e00": {
+  "version": "A",
+  "case_id": "tc_078"
+ },
+ "63efe357": {
+  "version": "A",
+  "case_id": "tc_087"
+ },
+ "4921bd2a": {
+  "version": "A",
+  "case_id": "tc_088"
+ },
+ "7d83dc2b": {
+  "version": "A",
+  "case_id": "tc_089"
+ },
+ "fa20529c": {
+  "version": "A",
+  "case_id": "tc_090"
+ },
+ "d4ec2a95": {
+  "version": "A",
+  "case_id": "tc_091"
+ },
+ "44bd210b": {
+  "version": "A",
+  "case_id": "tc_092"
+ },
+ "327629ff": {
+  "version": "A",
+  "case_id": "tc_093"
+ },
+ "35068d72": {
+  "version": "A",
+  "case_id": "tc_094"
+ },
+ "bbc0372b": {
+  "version": "A",
+  "case_id": "tc_095"
+ },
+ "7f653eda": {
+  "version": "A",
+  "case_id": "tc_096"
+ },
+ "550064f9": {
+  "version": "A",
+  "case_id": "tc_097"
+ },
+ "41f4a445": {
+  "version": "A",
+  "case_id": "tc_098"
+ },
+ "ca30fc84": {
+  "version": "A",
+  "case_id": "tc_099"
+ },
+ "f6c14d81": {
+  "version": "A",
+  "case_id": "tc_100"
+ },
+ "414a2305": {
+  "version": "A",
+  "case_id": "tc_101"
+ },
+ "6074f4c7": {
+  "version": "A",
+  "case_id": "tc_102"
+ },
+ "269ca163": {
+  "version": "A",
+  "case_id": "tc_103"
+ },
+ "ed5fe340": {
+  "version": "A",
+  "case_id": "tc_104"
+ },
+ "7b72bfb1": {
+  "version": "A",
+  "case_id": "tc_105"
+ },
+ "0b63ac75": {
+  "version": "A",
+  "case_id": "tc_106"
+ },
+ "4c52301a": {
+  "version": "A",
+  "case_id": "tc_107"
+ },
+ "ff33e4ac": {
+  "version": "A",
+  "case_id": "tc_108"
+ },
+ "fffb9bc9": {
+  "version": "A",
+  "case_id": "tc_109"
+ },
+ "adce877d": {
+  "version": "A",
+  "case_id": "tc_110"
+ },
+ "83956905": {
+  "version": "A",
+  "case_id": "tc_111"
+ },
+ "d5d54acc": {
+  "version": "A",
+  "case_id": "tc_112"
+ },
+ "d28f4e05": {
+  "version": "A",
+  "case_id": "tc_114"
+ },
+ "7b3a80b7": {
+  "version": "A",
+  "case_id": "tc_117"
+ },
+ "7a75b66e": {
+  "version": "A",
+  "case_id": "tc_118"
+ },
+ "e45adf22": {
+  "version": "A",
+  "case_id": "tc_120"
+ },
+ "e37cc292": {
+  "version": "A",
+  "case_id": "tc_125"
+ },
+ "5cbdc59a": {
+  "version": "A",
+  "case_id": "tc_129"
+ },
+ "0a9bd4db": {
+  "version": "A",
+  "case_id": "tc_130"
+ },
+ "312ae15c": {
+  "version": "A",
+  "case_id": "tc_132"
+ },
+ "df99eb88": {
+  "version": "A",
+  "case_id": "tc_133"
+ },
+ "ea100cf8": {
+  "version": "A",
+  "case_id": "tc_135"
+ },
+ "5e0196d8": {
+  "version": "A",
+  "case_id": "tc_137"
+ },
+ "b3b68816": {
+  "version": "A",
+  "case_id": "tc_138"
+ },
+ "259031ad": {
+  "version": "A",
+  "case_id": "tc_139"
+ },
+ "65d0e31e": {
+  "version": "A",
+  "case_id": "tc_140"
+ },
+ "d89ff109": {
+  "version": "A",
+  "case_id": "tc_148"
+ },
+ "300e265f": {
+  "version": "B",
+  "case_id": "tc_003"
+ },
+ "3714e026": {
+  "version": "B",
+  "case_id": "tc_004"
+ },
+ "3d6302ea": {
+  "version": "B",
+  "case_id": "tc_005"
+ },
+ "3ddfd023": {
+  "version": "B",
+  "case_id": "tc_007"
+ },
+ "e3e6a9fb": {
+  "version": "B",
+  "case_id": "tc_010"
+ },
+ "c6ce3943": {
+  "version": "B",
+  "case_id": "tc_014"
+ },
+ "b961543a": {
+  "version": "B",
+  "case_id": "tc_021"
+ },
+ "d54b24a2": {
+  "version": "B",
+  "case_id": "tc_024"
+ },
+ "64ac33f5": {
+  "version": "B",
+  "case_id": "tc_026"
+ },
+ "fa98f78d": {
+  "version": "B",
+  "case_id": "tc_033"
+ },
+ "66ae3163": {
+  "version": "B",
+  "case_id": "tc_035"
+ },
+ "1c5d0ea9": {
+  "version": "B",
+  "case_id": "tc_038"
+ },
+ "62a8e13c": {
+  "version": "B",
+  "case_id": "tc_042"
+ },
+ "433d43ba": {
+  "version": "B",
+  "case_id": "tc_053"
+ },
+ "bb482a2c": {
+  "version": "B",
+  "case_id": "tc_056"
+ },
+ "639f48ab": {
+  "version": "B",
+  "case_id": "tc_063"
+ },
+ "bffa1e9c": {
+  "version": "B",
+  "case_id": "tc_068"
+ },
+ "f850b8f7": {
+  "version": "B",
+  "case_id": "tc_074"
+ },
+ "692569fc": {
+  "version": "B",
+  "case_id": "tc_078"
+ },
+ "e6c64cc2": {
+  "version": "B",
+  "case_id": "tc_087"
+ },
+ "fff6392e": {
+  "version": "B",
+  "case_id": "tc_088"
+ },
+ "5e968849": {
+  "version": "B",
+  "case_id": "tc_089"
+ },
+ "cd6aad94": {
+  "version": "B",
+  "case_id": "tc_090"
+ },
+ "7892a3cf": {
+  "version": "B",
+  "case_id": "tc_091"
+ },
+ "b02bd22e": {
+  "version": "B",
+  "case_id": "tc_092"
+ },
+ "ac203422": {
+  "version": "B",
+  "case_id": "tc_093"
+ },
+ "cc0bbea0": {
+  "version": "B",
+  "case_id": "tc_094"
+ },
+ "af2841dd": {
+  "version": "B",
+  "case_id": "tc_095"
+ },
+ "f8ab3cb0": {
+  "version": "B",
+  "case_id": "tc_096"
+ },
+ "d0b2d845": {
+  "version": "B",
+  "case_id": "tc_097"
+ },
+ "730afb35": {
+  "version": "B",
+  "case_id": "tc_098"
+ },
+ "54e72fad": {
+  "version": "B",
+  "case_id": "tc_099"
+ },
+ "1914d321": {
+  "version": "B",
+  "case_id": "tc_100"
+ },
+ "bc6e7ab6": {
+  "version": "B",
+  "case_id": "tc_101"
+ },
+ "5a9fa34b": {
+  "version": "B",
+  "case_id": "tc_102"
+ },
+ "dc1de749": {
+  "version": "B",
+  "case_id": "tc_103"
+ },
+ "602d89c0": {
+  "version": "B",
+  "case_id": "tc_104"
+ },
+ "f94d2942": {
+  "version": "B",
+  "case_id": "tc_105"
+ },
+ "a4c50790": {
+  "version": "B",
+  "case_id": "tc_106"
+ },
+ "b89a825c": {
+  "version": "B",
+  "case_id": "tc_107"
+ },
+ "bd69e1c1": {
+  "version": "B",
+  "case_id": "tc_108"
+ },
+ "e8b9d871": {
+  "version": "B",
+  "case_id": "tc_109"
+ },
+ "7b22097b": {
+  "version": "B",
+  "case_id": "tc_110"
+ },
+ "e0e04e9f": {
+  "version": "B",
+  "case_id": "tc_111"
+ },
+ "04e48774": {
+  "version": "B",
+  "case_id": "tc_112"
+ },
+ "0bbb1a10": {
+  "version": "B",
+  "case_id": "tc_114"
+ },
+ "8410a987": {
+  "version": "B",
+  "case_id": "tc_117"
+ },
+ "27ac1759": {
+  "version": "B",
+  "case_id": "tc_118"
+ },
+ "3fbc8ea3": {
+  "version": "B",
+  "case_id": "tc_120"
+ },
+ "ba554286": {
+  "version": "B",
+  "case_id": "tc_125"
+ },
+ "d53aabe4": {
+  "version": "B",
+  "case_id": "tc_129"
+ },
+ "5ad1d202": {
+  "version": "B",
+  "case_id": "tc_130"
+ },
+ "05fd0559": {
+  "version": "B",
+  "case_id": "tc_132"
+ },
+ "43b77b24": {
+  "version": "B",
+  "case_id": "tc_133"
+ },
+ "56092d13": {
+  "version": "B",
+  "case_id": "tc_135"
+ },
+ "47521bd3": {
+  "version": "B",
+  "case_id": "tc_137"
+ },
+ "d62e0026": {
+  "version": "B",
+  "case_id": "tc_138"
+ },
+ "487c506b": {
+  "version": "B",
+  "case_id": "tc_139"
+ },
+ "0f383f36": {
+  "version": "B",
+  "case_id": "tc_140"
+ },
+ "a362000c": {
+  "version": "B",
+  "case_id": "tc_148"
+ },
+ "df180a71": {
+  "version": "C",
+  "case_id": "tc_003"
+ },
+ "c47b438c": {
+  "version": "C",
+  "case_id": "tc_004"
+ },
+ "ea1b1372": {
+  "version": "C",
+  "case_id": "tc_005"
+ },
+ "6178bfbd": {
+  "version": "C",
+  "case_id": "tc_007"
+ },
+ "92cb87fa": {
+  "version": "C",
+  "case_id": "tc_010"
+ },
+ "598bbb9a": {
+  "version": "C",
+  "case_id": "tc_014"
+ },
+ "32735ab1": {
+  "version": "C",
+  "case_id": "tc_021"
+ },
+ "14b07bca": {
+  "version": "C",
+  "case_id": "tc_024"
+ },
+ "d6389a5e": {
+  "version": "C",
+  "case_id": "tc_026"
+ },
+ "140ebe6c": {
+  "version": "C",
+  "case_id": "tc_033"
+ },
+ "4ec1729f": {
+  "version": "C",
+  "case_id": "tc_035"
+ },
+ "f9fd2b4c": {
+  "version": "C",
+  "case_id": "tc_038"
+ },
+ "a031292f": {
+  "version": "C",
+  "case_id": "tc_042"
+ },
+ "e0e976ba": {
+  "version": "C",
+  "case_id": "tc_053"
+ },
+ "292aeb0c": {
+  "version": "C",
+  "case_id": "tc_056"
+ },
+ "d14609ee": {
+  "version": "C",
+  "case_id": "tc_063"
+ },
+ "ed4199a0": {
+  "version": "C",
+  "case_id": "tc_068"
+ },
+ "f5941471": {
+  "version": "C",
+  "case_id": "tc_074"
+ },
+ "412f6f23": {
+  "version": "C",
+  "case_id": "tc_078"
+ },
+ "96bdd6ec": {
+  "version": "C",
+  "case_id": "tc_087"
+ },
+ "fb1b2308": {
+  "version": "C",
+  "case_id": "tc_088"
+ },
+ "143048f8": {
+  "version": "C",
+  "case_id": "tc_089"
+ },
+ "4163a333": {
+  "version": "C",
+  "case_id": "tc_090"
+ },
+ "cfd3fe45": {
+  "version": "C",
+  "case_id": "tc_091"
+ },
+ "b941aa01": {
+  "version": "C",
+  "case_id": "tc_092"
+ },
+ "2dc68726": {
+  "version": "C",
+  "case_id": "tc_093"
+ },
+ "3f8903b0": {
+  "version": "C",
+  "case_id": "tc_094"
+ },
+ "aeab126e": {
+  "version": "C",
+  "case_id": "tc_095"
+ },
+ "865ab03f": {
+  "version": "C",
+  "case_id": "tc_096"
+ },
+ "dbbcf85d": {
+  "version": "C",
+  "case_id": "tc_097"
+ },
+ "ccaea11b": {
+  "version": "C",
+  "case_id": "tc_098"
+ },
+ "11ec82c5": {
+  "version": "C",
+  "case_id": "tc_099"
+ },
+ "0247afc3": {
+  "version": "C",
+  "case_id": "tc_100"
+ },
+ "050c1642": {
+  "version": "C",
+  "case_id": "tc_101"
+ },
+ "1d29e262": {
+  "version": "C",
+  "case_id": "tc_102"
+ },
+ "b455d5dc": {
+  "version": "C",
+  "case_id": "tc_103"
+ },
+ "5825657a": {
+  "version": "C",
+  "case_id": "tc_104"
+ },
+ "5cbef2f0": {
+  "version": "C",
+  "case_id": "tc_105"
+ },
+ "026d4925": {
+  "version": "C",
+  "case_id": "tc_106"
+ },
+ "07ff720e": {
+  "version": "C",
+  "case_id": "tc_107"
+ },
+ "e51afa10": {
+  "version": "C",
+  "case_id": "tc_108"
+ },
+ "a64a9c62": {
+  "version": "C",
+  "case_id": "tc_109"
+ },
+ "75ca1cd4": {
+  "version": "C",
+  "case_id": "tc_110"
+ },
+ "f7d13413": {
+  "version": "C",
+  "case_id": "tc_111"
+ },
+ "807ba517": {
+  "version": "C",
+  "case_id": "tc_112"
+ },
+ "a1d27728": {
+  "version": "C",
+  "case_id": "tc_114"
+ },
+ "308c20e6": {
+  "version": "C",
+  "case_id": "tc_117"
+ },
+ "5d0141e9": {
+  "version": "C",
+  "case_id": "tc_118"
+ },
+ "bdc6528c": {
+  "version": "C",
+  "case_id": "tc_120"
+ },
+ "1c7536bc": {
+  "version": "C",
+  "case_id": "tc_125"
+ },
+ "0e5e54f4": {
+  "version": "C",
+  "case_id": "tc_129"
+ },
+ "93ff22db": {
+  "version": "C",
+  "case_id": "tc_130"
+ },
+ "ceac5477": {
+  "version": "C",
+  "case_id": "tc_132"
+ },
+ "5cccef21": {
+  "version": "C",
+  "case_id": "tc_133"
+ },
+ "bf9102ea": {
+  "version": "C",
+  "case_id": "tc_135"
+ },
+ "5bb5461f": {
+  "version": "C",
+  "case_id": "tc_137"
+ },
+ "02abbf00": {
+  "version": "C",
+  "case_id": "tc_138"
+ },
+ "64dd3749": {
+  "version": "C",
+  "case_id": "tc_139"
+ },
+ "de189e64": {
+  "version": "C",
+  "case_id": "tc_140"
+ },
+ "45898b54": {
+  "version": "C",
+  "case_id": "tc_148"
+ },
+ "c0f5611d": {
+  "version": "D",
+  "case_id": "tc_003"
+ },
+ "d9f1db41": {
+  "version": "D",
+  "case_id": "tc_004"
+ },
+ "4794f728": {
+  "version": "D",
+  "case_id": "tc_005"
+ },
+ "5482ac10": {
+  "version": "D",
+  "case_id": "tc_007"
+ },
+ "fefd9f3f": {
+  "version": "D",
+  "case_id": "tc_010"
+ },
+ "d190a413": {
+  "version": "D",
+  "case_id": "tc_014"
+ },
+ "ccdaf867": {
+  "version": "D",
+  "case_id": "tc_021"
+ },
+ "f7d64217": {
+  "version": "D",
+  "case_id": "tc_024"
+ },
+ "b177a6a8": {
+  "version": "D",
+  "case_id": "tc_026"
+ },
+ "c097c6d8": {
+  "version": "D",
+  "case_id": "tc_033"
+ },
+ "273459ea": {
+  "version": "D",
+  "case_id": "tc_035"
+ },
+ "bbce7781": {
+  "version": "D",
+  "case_id": "tc_038"
+ },
+ "23f9537c": {
+  "version": "D",
+  "case_id": "tc_042"
+ },
+ "76e8a59f": {
+  "version": "D",
+  "case_id": "tc_053"
+ },
+ "f7536b17": {
+  "version": "D",
+  "case_id": "tc_056"
+ },
+ "1d781d87": {
+  "version": "D",
+  "case_id": "tc_063"
+ },
+ "ad83de2e": {
+  "version": "D",
+  "case_id": "tc_068"
+ },
+ "4a759a37": {
+  "version": "D",
+  "case_id": "tc_074"
+ },
+ "d87752ef": {
+  "version": "D",
+  "case_id": "tc_078"
+ },
+ "e6f96453": {
+  "version": "D",
+  "case_id": "tc_087"
+ },
+ "ab6cf8d6": {
+  "version": "D",
+  "case_id": "tc_088"
+ },
+ "21557867": {
+  "version": "D",
+  "case_id": "tc_089"
+ },
+ "452645d4": {
+  "version": "D",
+  "case_id": "tc_090"
+ },
+ "d201d401": {
+  "version": "D",
+  "case_id": "tc_091"
+ },
+ "bad1de6f": {
+  "version": "D",
+  "case_id": "tc_092"
+ },
+ "851eb7bf": {
+  "version": "D",
+  "case_id": "tc_093"
+ },
+ "98b9de84": {
+  "version": "D",
+  "case_id": "tc_094"
+ },
+ "43165db5": {
+  "version": "D",
+  "case_id": "tc_095"
+ },
+ "4852f0ad": {
+  "version": "D",
+  "case_id": "tc_096"
+ },
+ "7ecd97ff": {
+  "version": "D",
+  "case_id": "tc_097"
+ },
+ "727bc85c": {
+  "version": "D",
+  "case_id": "tc_098"
+ },
+ "eb163abf": {
+  "version": "D",
+  "case_id": "tc_099"
+ },
+ "9820133f": {
+  "version": "D",
+  "case_id": "tc_100"
+ },
+ "c5d9593b": {
+  "version": "D",
+  "case_id": "tc_101"
+ },
+ "3c1c8d09": {
+  "version": "D",
+  "case_id": "tc_102"
+ },
+ "d28770a8": {
+  "version": "D",
+  "case_id": "tc_103"
+ },
+ "14bd533e": {
+  "version": "D",
+  "case_id": "tc_104"
+ },
+ "c0869788": {
+  "version": "D",
+  "case_id": "tc_105"
+ },
+ "8b8edc8f": {
+  "version": "D",
+  "case_id": "tc_106"
+ },
+ "439e7736": {
+  "version": "D",
+  "case_id": "tc_107"
+ },
+ "f0d8d8b0": {
+  "version": "D",
+  "case_id": "tc_108"
+ },
+ "ab52a518": {
+  "version": "D",
+  "case_id": "tc_109"
+ },
+ "f79ef321": {
+  "version": "D",
+  "case_id": "tc_110"
+ },
+ "5aa6b09c": {
+  "version": "D",
+  "case_id": "tc_111"
+ },
+ "ae11f624": {
+  "version": "D",
+  "case_id": "tc_112"
+ },
+ "ad7ed381": {
+  "version": "D",
+  "case_id": "tc_114"
+ },
+ "af6e51c1": {
+  "version": "D",
+  "case_id": "tc_117"
+ },
+ "d1a478dc": {
+  "version": "D",
+  "case_id": "tc_118"
+ },
+ "8d86f07c": {
+  "version": "D",
+  "case_id": "tc_120"
+ },
+ "04006d96": {
+  "version": "D",
+  "case_id": "tc_125"
+ },
+ "d8d39855": {
+  "version": "D",
+  "case_id": "tc_129"
+ },
+ "6847b602": {
+  "version": "D",
+  "case_id": "tc_130"
+ },
+ "f78d7884": {
+  "version": "D",
+  "case_id": "tc_132"
+ },
+ "58f25873": {
+  "version": "D",
+  "case_id": "tc_133"
+ },
+ "d86e0eb0": {
+  "version": "D",
+  "case_id": "tc_135"
+ },
+ "c81c8324": {
+  "version": "D",
+  "case_id": "tc_137"
+ },
+ "e014f850": {
+  "version": "D",
+  "case_id": "tc_138"
+ },
+ "910a1933": {
+  "version": "D",
+  "case_id": "tc_139"
+ },
+ "f6e38e26": {
+  "version": "D",
+  "case_id": "tc_140"
+ },
+ "b2502e48": {
+  "version": "D",
+  "case_id": "tc_148"
+ }
+}

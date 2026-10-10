@@ -1,0 +1,32 @@
+{
+ "run": "run_01",
+ "iteration": 200,
+ "rule": "max validation action_ok, then fewest problems, then lowest val loss",
+ "scores": {
+  "action_ok": 45,
+  "n": 50,
+  "problems": 10,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "4/8",
+   "explain": "25/25",
+   "premise": "5/5",
+   "urgent": "5/5"
+  },
+  "median_words": 63,
+  "val_loss": 0.233
+ },
+ "base": {
+  "action_ok": 38,
+  "n": 50,
+  "problems": 34,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "0/8",
+   "explain": "25/25",
+   "premise": "5/5",
+   "urgent": "2/5"
+  },
+  "median_words": 82
+ }
+}

@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# Local AI-assistant context (kept out of the repo)
+CLAUDE.md
+.claude/
+
+# Tool artifacts
+.playwright-cli/
+.streamlit/secrets.toml
+
+# Credentials and private local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.aws/
+.ssh/
+.codex/
+.agents/
+.mcp.json
+secrets.toml
+security-report*.json
+
+# Run logs (contain local absolute paths; results are in the .jsonl files)
+*.log
+# ...except the LoRA training log, which documents the selected run
+!adapters/run_01/train.log
+
+# Model weights: only the selected adapter is versioned
+adapters/smoke/
+adapters/run_01/*.safetensors

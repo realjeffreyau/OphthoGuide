@@ -1,0 +1,14 @@
+question_id,expected_chunk_ids,retrieved_chunk_ids,relevant_hit,top_coverage,weak_evidence
+t01,nei_012_chunk_01,nei_012_chunk_01;nei_012_chunk_02;nei_048_chunk_02;nei_009_chunk_01,True,1.0,False
+t02,nei_004_chunk_01;nei_004_chunk_02,nei_004_chunk_01;nei_034_chunk_02;nei_035_chunk_01;nei_001_chunk_03,True,1.0,False
+t03,nei_014_chunk_05,nei_014_chunk_05;nei_014_chunk_01;nei_014_chunk_02;nei_050_chunk_01,True,1.0,False
+t04,nei_019_chunk_02,nei_019_chunk_02;nei_019_chunk_01;nei_005_chunk_03;nei_037_chunk_02,True,0.7,False
+t05,nei_024_chunk_04,nei_024_chunk_01;nei_024_chunk_02;nei_024_chunk_04;nei_024_chunk_03,True,0.6,False
+t06,nei_020_chunk_01,nei_020_chunk_02;nei_020_chunk_01;nei_020_chunk_05;nei_020_chunk_04,True,1.0,False
+t07,nei_025_chunk_02,nei_025_chunk_02;nei_014_chunk_02;nei_050_chunk_01;nei_014_chunk_03,True,1.0,False
+t08,nei_027_chunk_01,nei_027_chunk_01;nei_023_chunk_05;nei_031_chunk_03;nei_040_chunk_02,True,1.0,False
+t09,nei_001_chunk_04,nei_001_chunk_04;nei_001_chunk_05;nei_001_chunk_02;nei_035_chunk_02,True,1.0,False
+t10,nei_002_chunk_04;nei_041_chunk_01,nei_041_chunk_01;nei_041_chunk_02;nei_002_chunk_04;nei_044_chunk_04,True,0.51,False
+t11,,nei_003_chunk_07;nei_001_chunk_02;nei_001_chunk_01;nei_001_chunk_07,True,0.33,True
+t12,nei_049_chunk_01;nei_049_chunk_02,nei_049_chunk_02;nei_049_chunk_01,True,1.0,False
+t13,nei_049_chunk_01;nei_049_chunk_02,nei_049_chunk_01;nei_049_chunk_03;nei_049_chunk_02;nei_049_chunk_04,True,0.57,False

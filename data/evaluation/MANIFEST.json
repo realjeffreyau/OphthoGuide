@@ -1,0 +1,25 @@
+{
+  "name": "OphthoGuide evaluation set",
+  "version": 2,
+  "frozen": true,
+  "frozen_on": "2026-10-08",
+  "sha256": "dd4c6e03208f24ed6fee2b2622d46275cbad220108c459f6a34632437450f8ab",
+  "n_cases": 150,
+  "category_counts": {
+    "straightforward": 60,
+    "missing_info": 30,
+    "urgent": 20,
+    "false_premise": 20,
+    "out_of_scope": 20
+  },
+  "action_counts": {
+    "answer": 78,
+    "clarify": 28,
+    "escalate": 21,
+    "abstain": 23
+  },
+  "corpus_documents_sha256": "1f37e8f192fe7d497c129c978cc6933fc6341d6846627d031adf9555f05cd863",
+  "corpus_chunks_sha256": "bbfac9ce52fec94e24a79683a7350b9ba697670e33dc266d2f776a8216cbd874",
+  "clinical_review": "pending",
+  "usage": "TEST ONLY. Never add to the retrieval index. Never use for training or prompt tuning."
+}

@@ -1,0 +1,6 @@
+# Preserve source HTML byte-for-byte; its upstream formatting contains spaces.
+data/raw/*.html -whitespace
+# CSV exports use the standard CRLF record separator.
+*.csv whitespace=cr-at-eol
+# Generated Markdown uses two trailing spaces for intentional line breaks.
+data/processed/collection_report.md whitespace=-blank-at-eol

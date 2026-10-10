@@ -1,0 +1,8 @@
+{"question_id": "f01", "question": "What vitamins help with macular degeneration?", "type": "exception split (eligibility qualifier in another chunk)"}
+{"question_id": "f02", "question": "How long does pink eye last?", "type": "sources disagree (7-10 days vs 1-2 weeks)"}
+{"question_id": "f03", "question": "What is recovery like after cataract surgery?", "type": "new page, procedural"}
+{"question_id": "f04", "question": "What are the side effects of LASIK?", "type": "new page, list"}
+{"question_id": "f05", "question": "I splashed bleach in my eye. What should I do?", "type": "urgent, likely out of corpus"}
+{"question_id": "f06", "question": "How do doctors test for dry eye?", "type": "new page, diagnosis"}
+{"question_id": "f07", "question": "What laser treatment is used for diabetic retinopathy?", "type": "new page, treatment"}
+{"question_id": "f08", "question": "Is glaucoma always caused by high eye pressure?", "type": "exception / absolute wording"}

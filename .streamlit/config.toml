@@ -1,0 +1,10 @@
+[server]
+# The demo does not need hot reload; the watcher also trips over transformers lazy modules.
+fileWatcherType = "none"
+headless = true
+address = "127.0.0.1"
+enableCORS = true
+enableXsrfProtection = true
+
+[browser]
+gatherUsageStats = false

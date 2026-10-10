@@ -1,0 +1,167 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 4266.22it/s]
+==============================================================================
+[1/10] a01 Q: What are the early symptoms of cataracts?
+
+Early symptoms of cataracts are not mentioned in the evidence. describes early symptoms as "None" and later symptoms as "Blurry vision, colors that seem faded, sensitivity to light, trouble seeing at night, double vision."  also states that cataracts "may not be noticed at first" and that over time they can "lead to vision loss."  mentions that early on, "you may be able to make small changes to manage cataracts" and that "you may not need to get surgery right away." This is general education, not a diagnosis.
+
+Sources: none cited
+
+Claim check: 0 supported, 0 partly supported (◐), 0 removed, of 0 claims
+⚠ model judged the supplied evidence insufficient (gap stated, no citations)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[2/10] a02 Q: Can vision lost to glaucoma be restored?
+
+The evidence indicates that vision lost to glaucoma cannot be restored [nei_042_chunk_01] ◐. The passage  states: "These eye drops won’t cure glaucoma or reverse vision loss, but they can keep glaucoma from getting worse." [nei_042_chunk_01]. Similarly,  says: "Surgery can’t cure glaucoma or undo vision loss, but it can help protect your vision and stop it from getting worse." [nei_043_chunk_01]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_042_chunk_01] Glaucoma Medicines — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/glaucoma/glaucoma-medicines (updated 2024-12-05)
+  [nei_043_chunk_01] Glaucoma Surgery — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/glaucoma/glaucoma-surgery (updated 2026-08-20)
+
+Claim check: 2 supported, 1 partly supported (◐), 0 removed, of 3 claims
+  ◐ "The evidence indicates that vision lost to glaucoma cannot be restored.…"
+      source says [nei_042_chunk_01]: "These eye drops won’t cure glaucoma or reverse vision loss, but they can keep glaucoma from getting worse."
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[3/10] a03 Q: How often should someone with diabetes get an eye exam?
+
+According to the evidence, people with diabetes should get a dilated eye exam at least once a year [nei_028_chunk_01] ◐. This is general education, not a diagnosis.
+
+Sources:
+  [nei_028_chunk_01] Get a Dilated Eye Exam — What is a dilated eye exam?
+      https://www.nei.nih.gov/eye-health-information/healthy-vision/finding-eye-doctor/get-dilated-eye-exam (updated 2025-11-26)
+
+Claim check: 0 supported, 1 partly supported (◐), 0 removed, of 1 claims
+  ◐ "According to the evidence, people with diabetes should get a dilated eye exam at…"
+      source says [nei_028_chunk_01]: "If you have diabetes or high blood pressure, ask your doctor how often you need an exam. Most people with diabetes or high blood pressure need to get a dilated "
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[4/10] a04 Q: I suddenly see flashes of light and a dark curtain over my vision. What should I do?
+
+⚠ Safety notice: sudden vision changes (flashes, many new floaters, a curtain or shadow over your vision, sudden vision loss), an eye injury, or severe eye pain need care right away. See an eye doctor or go to the emergency room now; don't wait for an online answer.
+
+You should go to your eye doctor or the emergency room right away [nei_014_chunk_01]. These symptoms could indicate retinal detachment, which is a medical emergency [nei_015_chunk_03] ◐. Retinal detachment can cause permanent vision loss, but prompt treatment can help protect your vision [nei_014_chunk_01]. The symptoms you described, including flashes of light and a dark curtain over your vision, are also associated with retinal tear or detachment [nei_015_chunk_03] ◐. A dilated eye exam is needed to diagnose the issue [nei_014_chunk_01]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_014_chunk_01] Retinal Detachment — At a glance: Retinal Detachment
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/retinal-detachment (updated 2025-11-05)
+  [nei_015_chunk_03] Floaters — When to get help right away
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/floaters (updated 2024-12-04)
+
+Claim check: 3 supported, 2 partly supported (◐), 0 removed, of 5 claims; 2 citation(s) corrected
+  ◐ "These symptoms could indicate retinal detachment, which is a medical emergency.…"
+      source says [nei_015_chunk_03]: "Retinal tear or detachment can be a medical emergency. If you have these symptoms, it’s important to go to your eye doctor or the emergency room right away."
+  ◐ "The symptoms you described, including flashes of light and a dark curtain over y…"
+      source says [nei_015_chunk_03]: "Sometimes new floaters can be a sign of a retinal tear or retinal detachment — when the retina gets torn or pulled from its normal position at the back of the e"
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[5/10] a05 Q: Are eye floaters dangerous?
+
+Eye floaters can be dangerous if they indicate a more serious condition like retinal tear or retinal detachment [nei_015_chunk_03]. Floaters are small dark shapes that float across your vision and are often harmless, especially if they come and go [nei_015_chunk_01]. However, new floaters that appear suddenly and are accompanied by flashes of light or a dark shadow in your vision may signal a retinal tear or detachment, which is a medical emergency [nei_015_chunk_03]. If you experience these symptoms, you should see your eye doctor or go to the emergency room right away [nei_015_chunk_03]. Retinal detachment can cause permanent vision loss, but prompt treatment can help protect your vision [nei_014_chunk_01]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_015_chunk_03] Floaters — When to get help right away
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/floaters (updated 2024-12-04)
+  [nei_015_chunk_01] Floaters — At a glance: Floaters
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/floaters (updated 2024-12-04)
+  [nei_014_chunk_01] Retinal Detachment — At a glance: Retinal Detachment
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/retinal-detachment (updated 2025-11-05)
+
+Claim check: 5 supported, 0 partly supported (◐), 0 removed, of 5 claims
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[6/10] a06 Q: What are the shots in the eye for wet macular degeneration?
+
+The shots in the eye for wet macular degeneration are anti-VEGF injections [nei_032_chunk_01] ◐. These medicines help stop bleeding and leaking from blood vessels in the back of the eye [nei_032_chunk_01]. Anti-VEGF injections are the most common treatment doctors use to slow vision loss from wet AMD [nei_032_chunk_01]. They involve putting numbing medicine in the eye, cleaning the eye to prevent infection, and injecting the anti-VEGF medicine with a very small needle [nei_032_chunk_01]. Anti-VEGF injections usually only work for a short time, so most people need to get them many times [nei_032_chunk_02]. At first, most people need injections once a month, and over time, the frequency may decrease [nei_037_chunk_02]. Photodynamic therapy (PDT) is a much less common treatment for wet AMD that doctors sometimes use along with anti-VEGF injections [nei_032_chunk_02]. PDT uses a light-sensitive medicine called verteporfin that turns on when hit by a specific type of laser, causing the verteporfin to break down the blood vessels [nei_032_chunk_02] ◐. This is general education, not a diagnosis.
+
+Sources:
+  [nei_032_chunk_01] Treatments for Wet AMD (Advanced Neovascular AMD) — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration/treatments-wet-amd-advanced-neovascular-amd (updated 2024-12-05)
+  [nei_032_chunk_02] Treatments for Wet AMD (Advanced Neovascular AMD) — What are anti-VEGF injections?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration/treatments-wet-amd-advanced-neovascular-amd (updated 2024-12-05)
+  [nei_037_chunk_02] Injections to Treat Eye Conditions — Anti-VEGF drugs
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/diabetic-retinopathy/injections-treat-eye-conditions (updated 2026-03-24)
+
+Claim check: 6 supported, 2 partly supported (◐), 0 removed, of 8 claims; 1 citation(s) corrected
+  ◐ "The shots in the eye for wet macular degeneration are anti-VEGF injections.…"
+      source says [nei_032_chunk_01]: "The most common treatment doctors use to slow vision loss from wet AMD is called anti-VEGF injections. These medicines help stop bleeding and leaking from blood"
+  ◐ "PDT uses a light-sensitive medicine called verteporfin that turns on when hit by…"
+      source says [nei_032_chunk_02]: "PDT works by using a light-sensitive medicine called verteporfin that "turns on" when hit by a specific type of laser (sometimes called a cold laser). Your doct"
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[7/10] a07 Q: What is the difference between nearsighted and farsighted?
+
+Nearsightedness occurs when light focuses in front of the retina, making far-away objects blurry [nei_010_chunk_02]. Farsightedness occurs when light focuses behind the retina, making nearby objects blurry [nei_011_chunk_02]. Nearsightedness usually starts between ages 6 and 14 and gets worse until your early twenties [nei_010_chunk_02]. Most people who are farsighted are born with it, but it may not cause vision problems until you get older [nei_011_chunk_02]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_010_chunk_02] Nearsightedness (Myopia) — Am I at risk for nearsightedness?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/nearsightedness-myopia (updated 2024-12-04)
+  [nei_011_chunk_02] Farsightedness (Hyperopia) — What causes farsightedness?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/farsightedness-hyperopia (updated 2024-12-04)
+
+Claim check: 4 supported, 0 partly supported (◐), 2 removed, of 6 claims; 2 citation(s) corrected
+  Removed (not supported by the supplied sources):
+    ✗ "Nearsightedness (myopia) and farsightedness (hyperopia) are both refractive errors affecting how light focuses" (quote not found in any supplied passage)
+    ✗ "Both conditions are diagnosed through comprehensive eye exams and treated with glasses, contact lenses, or sur" (quote unrelated to claim)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[8/10] a08 Q: My vision has been blurry and colors look faded. Do I have cataracts?
+
+The symptoms of blurry vision and faded colors can be associated with cataracts, as these are later signs of the condition [nei_001_chunk_01]. The passage states: "But over time, cataracts can make your vision blurry, hazy, or less colorful." [nei_001_chunk_01]. Additionally, these symptoms can also occur with other eye conditions, such as macular edema, which also presents with blurred or wavy vision and dull color vision [nei_005_chunk_01] ◐. This is general education, not a diagnosis.
+
+Sources:
+  [nei_001_chunk_01] Cataracts — At a glance: Cataracts
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts (updated 2026-08-19)
+  [nei_005_chunk_01] Macular Edema — At a glance: Macular Edema
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/macular-edema (updated 2025-08-06)
+
+Claim check: 2 supported, 1 partly supported (◐), 1 removed, of 4 claims
+  ◐ "Additionally, these symptoms can also occur with other eye conditions, such as m…"
+      source says [nei_005_chunk_01]: "## What are the symptoms of macular edema?
+Blurry vision and vision that gets worse over time are the main symptoms of macular edema. You may also notice that:
+"
+  Removed (not supported by the supplied sources):
+    ✗ "Cataracts typically develop gradually and may not cause noticeable symptoms until they significantly affect vi" (quote unrelated to claim)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[9/10] a09 Q: Does sitting too close to the TV damage your eyes?
+
+The provided evidence does not cover the question of whether sitting too close to the TV damages the eyes. There are no passages available to address this specific concern. This is general education, not a diagnosis.
+
+Sources: none cited
+
+Claim check: 0 supported, 0 partly supported (◐), 0 removed, of 0 claims
+⚠ no usable evidence retrieved; answer should only state the gap (plus labelled safety guidance if relevant)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[10/10] a10 Q: Can I get LASIK if I have thin corneas?
+
+The passage  lists several conditions that may make LASIK unsuitable, including "Keratoconus (a disease that makes the cornea thinner over time)." [nei_049_chunk_01, nei_049_chunk_02]. The passage also states that LASIK is not right for everyone, and a comprehensive dilated eye exam is needed to determine suitability [nei_049_chunk_01]. It does not provide specific information about thin corneas beyond the context of keratoconus. Therefore, the evidence does not fully address whether thin corneas alone are a contraindication for LASIK. This is general education, not a diagnosis.
+
+Sources:
+  [nei_049_chunk_01] Surgery for Refractive Errors — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/refractive-errors/surgery-refractive-errors (updated 2024-12-06)
+  [nei_049_chunk_02] Surgery for Refractive Errors — Is LASIK right for me?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/refractive-errors/surgery-refractive-errors (updated 2024-12-06)
+
+Claim check: 2 supported, 0 partly supported (◐), 1 removed, of 3 claims; 1 citation(s) corrected
+  Removed (not supported by the supplied sources):
+    ✗ "It does not explicitly mention thin corneas as a contraindication but notes that keratoconus, which involves c" (contains an unsupported claim: "notes that keratoconus, which involves corneal thinning, is ")
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+
+wrote 10 records -> ../data/eval/assistant_runs.jsonl
+real 251.16
+user 65.63
+sys 19.18

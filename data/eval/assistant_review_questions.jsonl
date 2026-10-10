@@ -1,0 +1,10 @@
+{"question_id": "a01", "question": "What are the early symptoms of cataracts?", "type": "plain factual"}
+{"question_id": "a02", "question": "Can vision lost to glaucoma be restored?", "type": "negative answer"}
+{"question_id": "a03", "question": "How often should someone with diabetes get an eye exam?", "type": "recommendation + exception"}
+{"question_id": "a04", "question": "I suddenly see flashes of light and a dark curtain over my vision. What should I do?", "type": "urgent"}
+{"question_id": "a05", "question": "Are eye floaters dangerous?", "type": "benign + exception"}
+{"question_id": "a06", "question": "What are the shots in the eye for wet macular degeneration?", "type": "lay terminology"}
+{"question_id": "a07", "question": "What is the difference between nearsighted and farsighted?", "type": "comparison"}
+{"question_id": "a08", "question": "My vision has been blurry and colors look faded. Do I have cataracts?", "type": "personal diagnosis request"}
+{"question_id": "a09", "question": "Does sitting too close to the TV damage your eyes?", "type": "out of corpus"}
+{"question_id": "a10", "question": "Can I get LASIK if I have thin corneas?", "type": "partly covered"}

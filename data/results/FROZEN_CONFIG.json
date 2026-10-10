@@ -1,0 +1,21 @@
+{
+ "frozen": "2026-10-09",
+ "settings": {
+  "model": "Qwen/Qwen3-4B-MLX-4bit",
+  "revision": "52a5ab34fa604bc8af6d3ce0cac0cab10b7eb495",
+  "temp": 0.2,
+  "top_p": 0.9,
+  "max_tokens": 700,
+  "seed": "sha256(case_id)[:8]",
+  "adapter": "adapters/selected (run_01 checkpoint 200)"
+ },
+ "sha256": {
+  "scripts/assistant.py": "6b75311b2f4a4edd0342b40476cd70c5ad8f987fb315def01964f42bf51f5965",
+  "scripts/retrieval.py": "c7655352d9d476da765ea609b43411309f0249e446731dda404251934d3177f8",
+  "scripts/run_versions.py": "3de7ebf0cf06c283db7e8a4c5d029ac3f95b531079ae6b18ce9b3f0fbccb48ea",
+  "data/processed/chunks.jsonl": "bbfac9ce52fec94e24a79683a7350b9ba697670e33dc266d2f776a8216cbd874",
+  "data/evaluation/test_cases.jsonl": "dd4c6e03208f24ed6fee2b2622d46275cbad220108c459f6a34632437450f8ab",
+  "adapters/selected/adapters.safetensors": "161042e1c52e45807585188ba7e0a559b7fc5be99e358ffd9ad8c1859b78a3ee",
+  "adapters/selected/adapter_config.json": "25ef082a768a11160b577c85af19d25d76770f76a6e117e0dfa5d9f6b91bbc55"
+ }
+}

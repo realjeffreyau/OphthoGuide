@@ -1,0 +1,8 @@
+# Apple silicon (MLX). Tested with Python 3.14.2 on macOS.
+requests==2.34.2
+beautifulsoup4==4.15.0
+mlx==0.32.3
+mlx-lm==0.32.0
+transformers==5.19.0
+huggingface_hub==1.33.0
+streamlit==1.65.0

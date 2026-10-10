@@ -1,0 +1,139 @@
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 6498.48it/s]
+==============================================================================
+[1/8] f01 Q: What vitamins help with macular degeneration?
+
+AREDS 2 supplements contain specific vitamins and minerals that are recommended for macular degeneration [nei_031_chunk_03]. These include Vitamin C (500 mg), Vitamin E (400 IU), Copper (2 mg), Zinc (80 mg), Lutein (10 mg), and Zeaxanthin (2 mg) [nei_031_chunk_03]. Beta-carotene is not included in AREDS 2, which is a difference from the older AREDS formulation [nei_031_chunk_02]. These nutrients are part of a specific combination that may help slow vision loss from AMD when taken in the correct amounts [nei_031_chunk_03]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_031_chunk_03] AREDS 2 Supplements for Age-Related Macular Degeneration (AMD) — What are the ingredients?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration/nutritional-supplements-age-related-macular-degeneration (updated 2021-06-22)
+  [nei_031_chunk_02] AREDS 2 Supplements for Age-Related Macular Degeneration (AMD) — Are there any risks or side effects?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/age-related-macular-degeneration/nutritional-supplements-age-related-macular-degeneration (updated 2021-06-22)
+
+Claim check: 4 supported, 0 partly supported (◐), 0 removed, of 4 claims
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[2/8] f02 Q: How long does pink eye last?
+
+Viral pink eye, the most common type, usually gets better in 1 to 2 weeks without medicine [nei_046_chunk_01]. Sometimes, it can take 3 weeks or more to heal [nei_046_chunk_01]. Bacterial pink eye usually gets better in 2 to 5 days, but it can take 2 weeks or more to go away completely [nei_046_chunk_02] ◐. The type of pink eye you have will affect how long it takes to heal [nei_046_chunk_01]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_046_chunk_01] Treatment for Pink Eye — What is pink eye?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/pink-eye/treatment-pink-eye (updated 2019-06-26)
+  [nei_046_chunk_02] Treatment for Pink Eye — How long will it take for my pink eye to heal?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/pink-eye/treatment-pink-eye (updated 2019-06-26)
+
+Claim check: 3 supported, 1 partly supported (◐), 1 removed, of 5 claims; 2 citation(s) corrected
+  ◐ "Bacterial pink eye usually gets better in 2 to 5 days, but it can take 2 weeks o…"
+      source says [nei_046_chunk_02]: "Viral pink eye, the most common type, usually gets better in 1 to 2 weeks without medicine. Sometimes, it can take 3 weeks or more to heal. Remember, antibiotic"
+  Removed (not supported by the supplied sources):
+    ✗ "The duration of pink eye depends on its cause." (quote not found in any supplied passage)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[3/8] f03 Q: What is recovery like after cataract surgery?
+
+After cataract surgery, you’ll need to rest in a recovery area outside the operating room for a little while [nei_033_chunk_04]. Before going home, the medical team will check to make sure you don’t have any problems with your eye [nei_033_chunk_04]. Your eye doctor will explain how to protect your eye after surgery [nei_033_chunk_04]. They’ll give you eye drops to help your eye heal, and you may need to wear a special eye shield or glasses [nei_033_chunk_04]. Your eye may feel a bit itchy or uncomfortable and sensitive to light and touch [nei_033_chunk_04]. After 1 or 2 days, your eye should feel better [nei_033_chunk_04]. Most people are completely healed 8 weeks after their surgery [nei_033_chunk_05]. Your eye doctor will schedule checkups to make sure your eye is healing correctly [nei_033_chunk_04]. Cataract surgery is one of the most common, safe, and effective types of surgery done in the United States [nei_001_chunk_02].
+
+Sources:
+  [nei_033_chunk_04] Cataract Surgery — What happens during cataract surgery?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts/cataract-surgery (updated 2024-12-05)
+  [nei_033_chunk_05] Cataract Surgery — Will my vision be normal after cataract surgery?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts/cataract-surgery (updated 2024-12-05)
+  [nei_001_chunk_02] Cataracts — What are the types of cataracts?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/cataracts (updated 2026-08-19)
+
+Claim check: 9 supported, 0 partly supported (◐), 0 removed, of 9 claims
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[4/8] f04 Q: What are the side effects of LASIK?
+
+The side effects of LASIK include dry eye, seeing a glare or halo around bright lights, double vision, blurriness, and sensitivity to light [nei_049_chunk_02]. These side effects usually go away after a few months [nei_049_chunk_02]. Rarely, these problems can be permanent [nei_049_chunk_02]. Other risks of LASIK include infection, problems with corneal healing, or vision loss, which may require further surgery [nei_049_chunk_02]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_049_chunk_02] Surgery for Refractive Errors — Is LASIK right for me?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/refractive-errors/surgery-refractive-errors (updated 2024-12-06)
+
+Claim check: 4 supported, 0 partly supported (◐), 0 removed, of 4 claims
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[5/8] f05 Q: I splashed bleach in my eye. What should I do?
+
+⚠ Safety notice: sudden vision changes (flashes, many new floaters, a curtain or shadow over your vision, sudden vision loss), an eye injury, or severe eye pain need care right away. See an eye doctor or go to the emergency room now; don't wait for an online answer.
+
+Go to the eye doctor or the emergency room if you have a serious eye injury or trauma — like getting hit hard in the eye [nei_025_chunk_02]. The passage also mentions wearing protective eyewear when using chemicals like bleach or pesticides to prevent corneal injuries [nei_025_chunk_02]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_025_chunk_02] Corneal Conditions — When to get help right away
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/corneal-conditions (updated 2025-08-06)
+
+Claim check: 2 supported, 0 partly supported (◐), 1 removed, of 3 claims
+  Removed (not supported by the supplied sources):
+    ✗ "Splashing bleach in your eye is a serious eye injury, and the passage lists this as a reason to seek help righ" (no supplied passage states this)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[6/8] f06 Q: How do doctors test for dry eye?
+
+Doctors test for dry eye using several methods, including the slit lamp test and Schirmer’s test [nei_040_chunk_01]. The slit lamp test involves using a microscope to examine tear production after applying a dye [nei_040_chunk_01]. The Schirmer’s test uses numbing drops and a piece of paper to measure tear moisture over five minutes [nei_040_chunk_01]. A tear break up time (TBUT) test checks how long the tear film lasts after blinking by applying dye and observing the duration the dyed film remains on the eye [nei_040_chunk_02] ◐. These tests help determine if the eyes are producing enough tears or if tears are drying too quickly, which are key indicators of dry eye [nei_040_chunk_01] ◐. The doctor may also check the structure of the eyelids during a comprehensive dilated eye exam [nei_006_chunk_03]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_040_chunk_01] Testing for Dry Eye — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/dry-eye/testing-dry-eye (updated 2025-08-06)
+  [nei_040_chunk_02] Testing for Dry Eye — Tear break up time (TBUT)
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/dry-eye/testing-dry-eye (updated 2025-08-06)
+  [nei_006_chunk_03] Dry Eye — How will my eye doctor check for dry eye?
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/dry-eye (updated 2025-08-06)
+
+Claim check: 4 supported, 2 partly supported (◐), 0 removed, of 6 claims; 1 citation(s) corrected
+  ◐ "A tear break up time (TBUT) test checks how long the tear film lasts after blink…"
+      source says [nei_040_chunk_02]: "Your eye doctor will place a small amount of dye in your eye, and you’ll blink to make the dye fully cover your eye. Then, you’ll look forward without moving yo"
+  ◐ "These tests help determine if the eyes are producing enough tears or if tears ar…"
+      source says [nei_040_chunk_01]: "If your eyes feel dry and scratchy, see your eye doctor. Your eye doctor can do tests to see if your eyes are making enough tears. If the tests show you have dr"
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[7/8] f07 Q: What laser treatment is used for diabetic retinopathy?
+
+For diabetic retinopathy, a type of laser treatment called scatter laser surgery (also known as panretinal photocoagulation) is used [nei_038_chunk_01] ◐. This procedure involves using a medical laser to shrink blood vessels in the eye that are causing vision problems [nei_038_chunk_01] ◐. The treatment is performed in the eye doctor’s office, and your eye will be numbed before the procedure [nei_038_chunk_01] ◐. During the treatment, you may see flashes of light and your eye may sting or feel uncomfortable [nei_038_chunk_01]. Your vision will be blurry for the rest of the day, so you’ll need someone to drive you home [nei_038_chunk_01]. You may need more than 1 session of scatter laser surgery [nei_038_chunk_01]. This treatment has risks, including possible loss of peripheral (side) vision, color vision, and night vision, but for many people, the benefits of this treatment outweigh the risks [nei_038_chunk_01]. This is general education, not a diagnosis.
+
+Sources:
+  [nei_038_chunk_01] Laser Treatment for Diabetic Retinopathy — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/diabetic-retinopathy/laser-treatment-diabetic-retinopathy (updated 2024-12-06)
+
+Claim check: 4 supported, 3 partly supported (◐), 0 removed, of 7 claims
+  ◐ "For diabetic retinopathy, a type of laser treatment called scatter laser surgery…"
+      source says [nei_038_chunk_01]: "If you have advanced diabetic retinopathy, your doctor may use a type of laser treatment called scatter laser surgery as part of your treatment plan. In scatter"
+  ◐ "This procedure involves using a medical laser to shrink blood vessels in the eye…"
+      source says [nei_038_chunk_01]: "In scatter laser surgery (sometimes called panretinal photocoagulation), your doctor will use a medical laser to shrink blood vessels in your eye that are causi"
+  ◐ "The treatment is performed in the eye doctor’s office, and your eye will be numb…"
+      source says [nei_038_chunk_01]: "You can get this laser treatment at your eye doctor’s office. Your eye doctor will: - Put numbing medicine in your eye - Aim a laser into your eye using a speci"
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+==============================================================================
+[8/8] f08 Q: Is glaucoma always caused by high eye pressure?
+
+No, glaucoma is not always caused by high eye pressure [nei_044_chunk_04] ◐. The evidence shows that while high eye pressure increases the risk of glaucoma, it is not the only cause [nei_041_chunk_01] ◐. For example, some people with normal eye pressure can still develop glaucoma, as mentioned in [nei_041_chunk_01]. Additionally, there are types of glaucoma, such as pigmentary glaucoma, which occurs when pigment from the iris blocks fluid drainage, and neovascular glaucoma, which is caused by abnormal blood vessel growth due to conditions like diabetes or high blood pressure [nei_044_chunk_04] ◐. This is general education, not a diagnosis.
+
+Sources:
+  [nei_044_chunk_04] Types of Glaucoma — Secondary glaucomas
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/glaucoma/types-glaucoma (updated 2024-12-05)
+  [nei_041_chunk_01] Glaucoma and Eye Pressure — Introduction
+      https://www.nei.nih.gov/eye-health-information/eye-conditions-and-diseases/glaucoma/glaucoma-and-eye-pressure (updated 2024-12-05)
+
+Claim check: 1 supported, 3 partly supported (◐), 1 removed, of 5 claims
+  ◐ "No, glaucoma is not always caused by high eye pressure.…"
+      source says [nei_044_chunk_04]: "It’s usually caused by another medical condition, like diabetes or high blood pressure."
+  ◐ "The evidence shows that while high eye pressure increases the risk of glaucoma, …"
+      source says [nei_041_chunk_01]: "Research shows that high eye pressure increases your risk for glaucoma. … Research shows that high eye pressure increases your risk for glaucoma. Experts believ"
+  ◐ "Additionally, there are types of glaucoma, such as pigmentary glaucoma, which oc…"
+      source says [nei_044_chunk_04]: "Pigmentary glaucoma happens when the pigment (color) from your iris (the colored part of your eye) flakes off and blocks fluid from draining out of your eye. Ne"
+  Removed (not supported by the supplied sources):
+    ✗ "These examples demonstrate that glaucoma can have various causes beyond just high eye pressure." (no supplied passage states this)
+
+Courtesy: National Eye Institute, National Institutes of Health (NEI/NIH).
+
+wrote 8 records -> ../data/eval/assistant_fresh_runs.jsonl

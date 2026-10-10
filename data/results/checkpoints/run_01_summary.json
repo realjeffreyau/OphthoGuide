@@ -1,0 +1,99 @@
+{
+ "base": {
+  "action_ok": 38,
+  "n": 50,
+  "problems": 34,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "0/8",
+   "explain": "25/25",
+   "premise": "5/5",
+   "urgent": "2/5"
+  },
+  "median_words": 82
+ },
+ "run_01_0050": {
+  "action_ok": 37,
+  "n": 50,
+  "problems": 15,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "2/8",
+   "explain": "23/25",
+   "premise": "5/5",
+   "urgent": "1/5"
+  },
+  "median_words": 56,
+  "val_loss": 0.383
+ },
+ "run_01_0100": {
+  "action_ok": 40,
+  "n": 50,
+  "problems": 15,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "2/8",
+   "explain": "24/25",
+   "premise": "5/5",
+   "urgent": "3/5"
+  },
+  "median_words": 52,
+  "val_loss": 0.315
+ },
+ "run_01_0150": {
+  "action_ok": 39,
+  "n": 50,
+  "problems": 14,
+  "by_behaviour": {
+   "abstain": "5/7",
+   "clarify": "1/8",
+   "explain": "24/25",
+   "premise": "4/5",
+   "urgent": "5/5"
+  },
+  "median_words": 44,
+  "val_loss": 0.263
+ },
+ "run_01_0200": {
+  "action_ok": 45,
+  "n": 50,
+  "problems": 10,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "4/8",
+   "explain": "25/25",
+   "premise": "5/5",
+   "urgent": "5/5"
+  },
+  "median_words": 63,
+  "val_loss": 0.233
+ },
+ "run_01_0250": {
+  "action_ok": 41,
+  "n": 50,
+  "problems": 8,
+  "by_behaviour": {
+   "abstain": "6/7",
+   "clarify": "0/8",
+   "explain": "25/25",
+   "premise": "5/5",
+   "urgent": "5/5"
+  },
+  "median_words": 52,
+  "val_loss": 0.211
+ },
+ "run_01_0300": {
+  "action_ok": 41,
+  "n": 50,
+  "problems": 11,
+  "by_behaviour": {
+   "abstain": "5/7",
+   "clarify": "2/8",
+   "explain": "25/25",
+   "premise": "4/5",
+   "urgent": "5/5"
+  },
+  "median_words": 61,
+  "val_loss": 0.199
+ }
+}
