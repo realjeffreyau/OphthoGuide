@@ -591,10 +591,16 @@ publication tree; pip-audit checked 60 installed dependencies and found no known
 vulnerabilities. Bandit's five low-severity findings concern deterministic sampling
 and validation assertions; none is an authentication or cryptographic boundary.
 The demo now binds to loopback, bounds questions to 2,000 characters, and keeps raw
-exceptions out of its UI. Four security regression checks and the real-model demo
+exceptions out of its UI. Six security regression checks and the real-model demo
 checks passed locally. CI adds data/hash validation, dependency auditing, secret
 scanning and CodeQL; Dependabot checks for updates. Frozen experimental files were
-preserved. See `SECURITY.md` and `docs/SECURITY_REVIEW.md` for scope and limits:
+preserved, with the exact original assistant archived as non-executable text after
+CodeQL found a comparison-regex denial-of-service risk. The active parser uses
+bounded literal splits; it agrees with the original on all 546 unique saved
+questions. `scripts/verify_evaluated_snapshot.py` verifies the historical hashes;
+the old evaluation runner correctly refuses to rerun tests with changed code.
+Existing scores describe the archived version. See `SECURITY.md` and
+`docs/SECURITY_REVIEW.md` for scope and limits:
 passing these checks does not prove that all vulnerabilities are absent or that
 medical answers are reliable.
 

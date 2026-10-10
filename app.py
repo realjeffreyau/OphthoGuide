@@ -5,8 +5,8 @@
 Ask a question, read the answer, inspect exactly which NEI passages the model received,
 and compare the evaluated versions (A–D raw model output, B*/D* full pipeline).
 
-The demo only *calls* the evaluated code (scripts/assistant.py); it changes none of it, so
-data/results/FROZEN_CONFIG.json still describes the system shown here.
+The demo uses the security-hardened assistant. The original evaluated assistant is
+archived as text; data/results/FROZEN_CONFIG.json describes that historical snapshot.
 """
 from __future__ import annotations
 

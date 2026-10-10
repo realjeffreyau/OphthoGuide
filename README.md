@@ -49,6 +49,12 @@ question ─► BM25 retrieval over 196 NEI passages ─► prompt with passage 
 
 All versions ran **once** on a frozen 150-case test set (sha256-pinned; the configuration was frozen and hash-checked before the run). 240 answers were scored **blind**: 60 cases × versions A–D, including all 21 urgent cases. Full report: [`data/results/RESULTS.md`](data/results/RESULTS.md).
 
+The current assistant includes a post-evaluation security fix for comparison-question
+parsing. The exact evaluated assistant is retained as [non-executable text](data/results/evaluated_snapshot/README.md).
+The results below describe that historical snapshot, not a new evaluation of the
+hardened version. Verify all seven historical hashes with
+`scripts/verify_evaluated_snapshot.py`.
+
 | Version | Mean correctness (0–2) | Correct action | Unsupported claims | Unsafe | Useful |
 |---|---|---|---|---|---|
 | A: base model, no retrieval | 0.60 | 14/60 | 6 | 3 | 28 |
@@ -118,11 +124,16 @@ Each step writes versioned artifacts to `data/`. Rerunning a step overwrites the
 | 6. Training data | `scripts/build_training_data.py`, then `build_test_cases.py --check-train` on each file | `data/training/{train,valid}.jsonl` |
 | 7. LoRA training | see below | `adapters/run_01/train.log` |
 | 7b. Checkpoint selection | `scripts/select_checkpoint.py --run adapters/run_01 --select` | `adapters/selected/` |
-| 8. Evaluation | `scripts/run_versions.py --version {A,B,C,D,B*,D*} --set test` (needs `--freeze` first) | `data/results/` |
+| 8. Historical evaluation integrity | `scripts/verify_evaluated_snapshot.py` | validates the original seven frozen hashes |
 | 8b. Scoring | `scripts/score_versions.py auto/blind/report` | `data/results/RESULTS.md` |
 | 9. Demo checks | `scripts/test_app.py` | 14 end-to-end checks |
 
 All commands run with `.venv/bin/python`.
+
+The historical runner intentionally refuses to rerun the frozen test experiment
+with the hardened assistant. For a new experiment, use a separately versioned
+configuration and a new held-out set; do not overwrite the original freeze or
+results. The archived source is for inspection, not serving untrusted requests.
 
 ```bash
 # LoRA training (about 40 minutes on an M5; peak memory 6.2 GB)

@@ -17,11 +17,12 @@ not deployment of a public medical service.
 - AgentShield was run against the public tree. It found no applicable agent
   configuration files: local `CLAUDE.md` and `.claude/` are excluded. Its empty
   result is not an application security assessment.
-- Source validation, test manifest verification, and the seven frozen configuration
-  hashes passed. Security hardening changes the demo wrapper and packaging;
-  the frozen assistant, retrieval, evaluation runner, corpus, and adapter are intact.
-- Four security regression checks and the existing real-model demo checks passed
-  locally. All 18 Python source files compile. The five screenshots and sampled
+- Source validation and test manifest verification passed. All seven historical
+  evaluation hashes pass against the archived assistant and unchanged remaining
+  artifacts. The active assistant has a post-evaluation security patch; the old
+  runner deliberately refuses a new test run with that changed source.
+- Six security regression checks and the existing real-model demo checks passed
+  locally. The five screenshots and sampled
   frames from the 2-minute-11-second video contained no visible private information;
   the video has no audio track and its metadata contains no personal paths.
 
@@ -31,6 +32,11 @@ not deployment of a public medical service.
 - Bind the demo to loopback with XSRF/CORS protections enabled.
 - Bound question length and avoid exposing raw exceptions or missing-adapter paths.
 - Add least-privilege CI, commit-pinned Actions, dependency auditing, and Dependabot.
+- CodeQL detected one high-severity polynomial-regex denial-of-service risk in
+  comparison parsing. Replace it with bounded literal parsing; hostile million-
+  character inputs return immediately. Compatibility checks on 546 unique saved
+  questions found no differences in parsed comparison parts. This is a parser
+  compatibility check, not a new medical evaluation.
 - Add Gitleaks history scans and CodeQL. Hosted results are recorded by GitHub
   Actions; local checks alone do not establish that hosted jobs pass.
 

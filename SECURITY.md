@@ -17,6 +17,11 @@ executed as code, SQL, shell commands, or enabled HTML. The model has no tools.
 Prompt injection can still alter answers, and the verifier can miss unsupported
 claims. These controls do not establish medical reliability.
 
+Comparison parsing uses bounded literal separators instead of a backtracking
+regex. The original evaluated source is retained as a non-executable historical
+artifact; it contains the old regex and must not be used to serve untrusted input.
+Published medical evaluation scores refer to that historical snapshot.
+
 ## Reporting
 
 Report vulnerabilities privately through [GitHub private vulnerability reporting](https://github.com/realjeffreyau/OphthoGuide/security/advisories/new).

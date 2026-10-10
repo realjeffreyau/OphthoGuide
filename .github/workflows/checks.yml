@@ -28,7 +28,7 @@ jobs:
         run: |
           python scripts/validate_documents.py
           python scripts/build_test_cases.py --verify
-          python -c "import sys; sys.path.insert(0, 'scripts'); import run_versions; run_versions.check_frozen()"
+          python scripts/verify_evaluated_snapshot.py
           python -c "from pathlib import Path; [compile(p.read_bytes(), str(p), 'exec') for p in [Path('app.py'), *Path('scripts').glob('*.py'), *Path('data').glob('**/src/*.py')]]"
       - name: Demo security checks without inference
         run: python scripts/test_security.py

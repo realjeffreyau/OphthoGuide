@@ -56,6 +56,23 @@ class DemoSecurityTests(unittest.TestCase):
         self.assertTrue(app.error)
         self.assertNotIn(private_message, " ".join(e.value for e in app.error))
 
+    def test_comparison_parser(self):
+        cases = {
+            "What is the difference between cataracts and glaucoma?": ["cataracts", "glaucoma"],
+            "cataracts vs. glaucoma!": ["cataracts", "glaucoma"],
+            "compare dry eye with pink eye.": ["dry eye", "pink eye"],
+            "comparing dry eye to pink eye?": ["dry eye", "pink eye"],
+            "What is glaucoma?": [],
+        }
+        for question, expected in cases.items():
+            with self.subTest(question=question):
+                self.assertEqual(assistant.comparison_parts(question), expected)
+
+    def test_comparison_parser_rejects_adversarial_length(self):
+        for question in [" " * 1000000, "difference between a and " + "a and a" * 100000,
+                         "compare a to a" + "!" * 100000]:
+            self.assertEqual(assistant.comparison_parts(question), [])
+
 
 if __name__ == "__main__":
     unittest.main()

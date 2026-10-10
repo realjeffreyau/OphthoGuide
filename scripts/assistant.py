@@ -876,18 +876,44 @@ def revision_feedback(v: dict) -> str:
 
 # ------------------------------------------------------------------ pipeline
 
-COMPARISON = re.compile(
-    r"difference between (?P<a>.+?) and (?P<b>.+?)[?.!]*$"
-    r"|(?P<c>[\w' -]+?)\s+(?:vs\.?|versus)\s+(?P<d>[\w' -]+?)[?.!]*$"
-    r"|(?:compare|comparing) (?P<e>.+?) (?:and|with|to) (?P<f>.+?)[?.!]*$", re.I)
-
-
 def comparison_parts(question: str) -> list[str]:
-    m = COMPARISON.search(question.strip())
-    if not m:
+    """Split a bounded comparison using literal separators, without regex backtracking."""
+    if len(question) > 2000:
         return []
-    parts = [g for g in m.groups() if g]
-    return [p.strip() for p in parts] if len(parts) == 2 else []
+    text = " ".join(question.split()).rstrip("?.!")
+    lower = text.lower()
+    candidates = []
+    for prefix, separators in [("difference between ", (" and ",)),
+                               ("compare ", (" and ", " with ", " to ")),
+                               ("comparing ", (" and ", " with ", " to "))]:
+        start = lower.find(prefix)
+        if start < 0:
+            continue
+        body_start = start + len(prefix)
+        split_at = [lower.find(s, body_start) for s in separators]
+        choices = [(i, s) for i, s in zip(split_at, separators) if i > body_start]
+        if choices:
+            i, separator = min(choices)
+            a, b = text[body_start:i].strip(), text[i + len(separator):].strip()
+            if a and b:
+                candidates.append((start, a, b))
+    for separator in (" vs ", " vs. ", " versus "):
+        i = lower.find(separator)
+        if i < 0:
+            continue
+        a, b = text[:i], text[i + len(separator):]
+        allowed = lambda c: c.isalnum() or c in "_' -"
+        # The previous search accepted the suffix after the last punctuation mark.
+        j = len(a) - 1
+        while j >= 0 and allowed(a[j]):
+            j -= 1
+        a = a[j + 1:].strip()
+        if a and b.strip() and all(allowed(c) for c in b):
+            candidates.append((j + 1, a, b.strip()))
+    if not candidates:
+        return []
+    _, a, b = min(candidates, key=lambda c: c[0])
+    return [a, b]
 
 
 def _with_intro_chunks(picked: list[dict], all_chunks: list[dict]) -> list[dict]:
