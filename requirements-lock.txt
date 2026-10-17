@@ -27,7 +27,7 @@ mlx==0.32.3
 mlx-lm==0.32.0
 mlx-metal==0.32.3
 narwhals==2.27.1
-numpy==2.5.3
+numpy==2.5.4
 packaging==26.3
 pandas==3.0.6
 pillow==12.3.0
